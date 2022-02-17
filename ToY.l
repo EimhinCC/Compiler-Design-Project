@@ -1,33 +1,47 @@
-/* Companion source code for "flex & bison", published by O'Reilly
- * Media, ISBN 978-0-596-15597-1
- * Copyright (c) 2009, Taughannock Networks. All rights reserved.
- * See the README file for license conditions and contact info.
- * $Header: /home/johnl/flnb/code/RCS/fb3-1.l,v 2.1 2009/11/08 02:53:18 johnl Exp $
- */
-/* recognize tokens for the calculator */
+/* Lexical analisis */
 
-%option noyywrap nodefault yylineno
-%{
-# include "fb3-1.h"
-# include "fb3-1.tab.h"
-%}
+/*** Definition Section ***/
+import java.io.*;
 
-/* float exponent */
-EXP	([Ee][-+]?[0-9]+)
+class Token {
+    String text;
+    Token(String t) {
+        text = t;
+    }
+}
 
 %%
-"+" |
-"-" |
-"*" |
-"/" |
-"|" |
-"(" |
-")"     { return yytext[0]; }
-[0-9]+"."[0-9]*{EXP}? |
-"."?[0-9]+{EXP}? { yylval.d = atof(yytext); return NUMBER; }
 
-\n      { return EOL; }
-"//".*  
-[ \t]   { /* ignore white space */ }
-.	{ yyerror("Mystery character %c\n", *yytext); }
+%type Token
+
+%class Lexer
+
+%scanerror LexicalException
+
+%unicode
+
+Digit = [0-9]
+Alpha = [a-zA-Z]
+WhiteSp  = [\040\ n]
+
 %%
+/*** Rule Section***/
+%%
+{Digit}+ {
+    return new Token(yytext());
+}
+{WhiteSp}+ {
+    //function
+}
+. {
+    throw new Error ("Illegal character <" + yytext() + ">");
+}
+
+
+/*** Code Section***/
+public static void main (String argv[]) throws IOException {
+	Yylex yy = new Yylex(System.in);
+    Yytoken t;
+    while((t = yy.yylex()) != null)
+	    System.out.println(t);
+}
