@@ -1,2 +1,5 @@
-//2.343 4 6 8 9 10
+int i = fae2gf
+boolean a = true
+string a = "sef safe"
+
 

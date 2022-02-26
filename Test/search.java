@@ -34,13 +34,13 @@ class search {
 
   private static final String ZZ_CMAP_TOP_PACKED_0 =
     "\1\0\5\u0100\1\u0200\1\u0300\1\u0100\5\u0400\1\u0500\1\u0600"+
-    "\1\u0700\6\u0100\1\u0800\1\u0900\1\u0a00\1\u0b00\1\u0c00\1\u0d00"+
-    "\3\u0100\1\u0e00\205\u0100\1\u0600\1\u0100\1\u0f00\1\u1000\1\u1100"+
-    "\1\u1200\54\u0100\10\u1300\37\u0100\1\u0900\4\u0100\1\u1400\10\u0100"+
-    "\1\u1500\2\u0100\1\u1600\1\u1700\1\u1200\1\u0100\1\u0500\1\u0100"+
-    "\1\u1800\1\u1500\1\u0800\3\u0100\1\u1100\1\u1900\114\u0100\1\u1a00"+
-    "\1\u1100\153\u0100\1\u1b00\11\u0100\1\u1c00\1\u1200\6\u0100\1\u1100"+
-    "\u0f16\u0100";
+    "\1\u0700\5\u0100\1\u0800\1\u0900\1\u0a00\1\u0b00\1\u0c00\1\u0d00"+
+    "\1\u0e00\3\u0100\1\u0f00\17\u0100\1\u1000\165\u0100\1\u0600\1\u0100"+
+    "\1\u1100\1\u1200\1\u1300\1\u1400\54\u0100\10\u1500\37\u0100\1\u0a00"+
+    "\4\u0100\1\u1600\10\u0100\1\u1700\2\u0100\1\u1800\1\u1900\1\u1400"+
+    "\1\u0100\1\u0500\1\u0100\1\u1a00\1\u1700\1\u0900\3\u0100\1\u1300"+
+    "\1\u1b00\114\u0100\1\u1c00\1\u1300\153\u0100\1\u1d00\11\u0100\1\u1e00"+
+    "\1\u1400\6\u0100\1\u1300\u0f16\u0100";
 
   private static int [] zzUnpackcmap_top() {
     int [] result = new int[4352];
@@ -68,21 +68,27 @@ class search {
   private static final int [] ZZ_CMAP_BLOCKS = zzUnpackcmap_blocks();
 
   private static final String ZZ_CMAP_BLOCKS_PACKED_0 =
-    "\12\0\1\1\2\2\1\3\40\0\1\4\1\5\12\6"+
-    "\113\0\1\2\u01da\0\12\6\206\0\12\6\306\0\12\6"+
-    "\234\0\12\6\166\0\12\6\140\0\12\6\166\0\12\6"+
-    "\106\0\12\6\u0116\0\12\6\106\0\12\6\u0146\0\12\6"+
-    "\46\0\12\6\u012c\0\12\6\200\0\12\6\246\0\12\6"+
-    "\6\0\12\6\266\0\12\6\126\0\12\6\206\0\12\6"+
-    "\6\0\12\6\316\0\2\2\u01a6\0\12\6\46\0\12\6"+
-    "\306\0\12\6\26\0\12\6\126\0\12\6\u0196\0\12\6"+
-    "\6\0\u0100\2\240\0\12\6\206\0\12\6\u012c\0\12\6"+
-    "\200\0\12\6\74\0\12\6\220\0\12\6\166\0\12\6"+
-    "\146\0\12\6\206\0\12\6\106\0\12\6\266\0\12\6"+
-    "\u0164\0\62\6\100\0\12\6\266\0";
+    "\11\0\1\1\1\2\2\1\1\3\22\0\1\4\15\0"+
+    "\1\5\1\6\12\7\3\0\1\10\5\0\1\11\5\0"+
+    "\1\12\27\0\1\13\1\14\1\15\1\0\1\16\1\0"+
+    "\1\17\1\20\1\21\2\0\1\22\1\0\1\23\1\24"+
+    "\1\25\1\0\1\26\1\27\1\30\1\31\5\0\1\32"+
+    "\1\0\1\33\7\0\1\1\32\0\1\1\u01bf\0\12\7"+
+    "\206\0\12\7\306\0\12\7\234\0\12\7\166\0\12\7"+
+    "\140\0\12\7\166\0\12\7\106\0\12\7\u0116\0\12\7"+
+    "\106\0\12\7\346\0\1\1\u015f\0\12\7\46\0\12\7"+
+    "\u012c\0\12\7\200\0\12\7\246\0\12\7\6\0\12\7"+
+    "\266\0\12\7\126\0\12\7\206\0\12\7\6\0\12\7"+
+    "\246\0\13\1\35\0\2\1\5\0\1\1\57\0\1\1"+
+    "\240\0\1\1\u01cf\0\12\7\46\0\12\7\306\0\12\7"+
+    "\26\0\12\7\126\0\12\7\u0196\0\12\7\6\0\u0100\34"+
+    "\240\0\12\7\206\0\12\7\u012c\0\12\7\200\0\12\7"+
+    "\74\0\12\7\220\0\12\7\166\0\12\7\146\0\12\7"+
+    "\206\0\12\7\106\0\12\7\266\0\12\7\u0164\0\62\7"+
+    "\100\0\12\7\266\0";
 
   private static int [] zzUnpackcmap_blocks() {
-    int [] result = new int[7424];
+    int [] result = new int[7936];
     int offset = 0;
     offset = zzUnpackcmap_blocks(ZZ_CMAP_BLOCKS_PACKED_0, offset, result);
     return result;
@@ -106,10 +112,12 @@ class search {
   private static final int [] ZZ_ACTION = zzUnpackAction();
 
   private static final String ZZ_ACTION_PACKED_0 =
-    "\1\0\1\1\1\2\1\1\1\3\1\1\1\3\1\1";
+    "\1\0\1\1\2\2\1\1\1\3\1\4\3\1\1\5"+
+    "\1\0\1\6\1\3\4\0\2\6\5\0\1\7\21\0"+
+    "\1\10";
 
   private static int [] zzUnpackAction() {
-    int [] result = new int[8];
+    int [] result = new int[44];
     int offset = 0;
     offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
     return result;
@@ -134,10 +142,15 @@ class search {
   private static final int [] ZZ_ROWMAP = zzUnpackRowMap();
 
   private static final String ZZ_ROWMAP_PACKED_0 =
-    "\0\0\0\7\0\7\0\16\0\25\0\34\0\43\0\52";
+    "\0\0\0\35\0\72\0\127\0\164\0\221\0\35\0\256"+
+    "\0\313\0\350\0\35\0\u0105\0\u0122\0\u013f\0\u015c\0\u0179"+
+    "\0\u0196\0\u01b3\0\35\0\u01d0\0\u01ed\0\u020a\0\u0227\0\u0244"+
+    "\0\u0261\0\u027e\0\u029b\0\u02b8\0\u02d5\0\u02f2\0\u030f\0\u032c"+
+    "\0\u0349\0\u0366\0\u0383\0\u03a0\0\u03bd\0\u03da\0\u03f7\0\u0414"+
+    "\0\u0431\0\u044e\0\u046b\0\35";
 
   private static int [] zzUnpackRowMap() {
-    int [] result = new int[8];
+    int [] result = new int[44];
     int offset = 0;
     offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
     return result;
@@ -160,12 +173,23 @@ class search {
   private static final int [] ZZ_TRANS = zzUnpackTrans();
 
   private static final String ZZ_TRANS_PACKED_0 =
-    "\2\2\2\3\1\2\1\4\1\5\14\0\1\6\5\0"+
-    "\1\7\1\0\1\5\1\6\1\2\1\6\1\10\3\6"+
-    "\6\0\1\7\1\0\1\2\5\0";
+    "\1\2\3\3\1\4\1\2\1\5\1\6\1\7\3\2"+
+    "\1\10\4\2\1\11\5\2\1\12\4\2\1\13\36\0"+
+    "\4\3\2\0\1\3\26\0\4\3\2\0\1\3\22\0"+
+    "\1\14\10\0\1\15\33\0\1\16\1\0\1\6\51\0"+
+    "\1\17\33\0\1\20\41\0\1\21\16\0\1\22\22\0"+
+    "\2\15\1\23\1\24\31\15\7\0\1\16\51\0\1\25"+
+    "\40\0\1\26\32\0\1\27\31\0\1\30\13\0\1\23"+
+    "\54\0\1\31\13\0\4\32\51\0\1\33\40\0\1\34"+
+    "\25\0\1\35\17\0\4\32\2\0\1\32\50\0\1\36"+
+    "\42\0\1\37\16\0\1\40\40\0\1\26\45\0\1\41"+
+    "\27\0\1\26\22\0\1\42\43\0\1\43\27\0\1\44"+
+    "\47\0\1\45\21\0\1\46\36\0\1\47\47\0\1\50"+
+    "\22\0\1\51\44\0\1\52\41\0\1\53\5\0\1\54"+
+    "\30\0";
 
   private static int [] zzUnpackTrans() {
-    int [] result = new int[49];
+    int [] result = new int[1160];
     int offset = 0;
     offset = zzUnpackTrans(ZZ_TRANS_PACKED_0, offset, result);
     return result;
@@ -208,10 +232,11 @@ class search {
   private static final int [] ZZ_ATTRIBUTE = zzUnpackAttribute();
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
-    "\1\0\2\11\5\1";
+    "\1\0\1\11\4\1\1\11\3\1\1\11\1\0\2\1"+
+    "\4\0\1\11\1\1\5\0\1\1\21\0\1\11";
 
   private static int [] zzUnpackAttribute() {
-    int [] result = new int[8];
+    int [] result = new int[44];
     int offset = 0;
     offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
     return result;
@@ -288,7 +313,6 @@ class search {
   private boolean zzEOFDone;
 
   /* user code: */
- List<String> numbers = new ArrayList();
  List<String> tokens = new ArrayList();
 
 
@@ -543,9 +567,9 @@ class search {
     if (!zzEOFDone) {
       zzEOFDone = true;
     
-    System.out.print("Numbers: ");
-    for(int i=0; i<numbers.size();i++){
-        System.out.print(numbers.get(i) + ", ");
+    System.out.print("Tokens: ");
+    for(int i=0; i<tokens.size();i++){
+        System.out.print(tokens.get(i) + ", ");
     }
     }
   }
@@ -705,17 +729,42 @@ class search {
             { 
             }
             // fall through
-          case 4: break;
+          case 9: break;
           case 2:
+            { tokens.add("WORD");
+            }
+            // fall through
+          case 10: break;
+          case 3:
+            { tokens.add("NUMBER");
+            }
+            // fall through
+          case 11: break;
+          case 4:
+            { tokens.add("EQU");
+            }
+            // fall through
+          case 12: break;
+          case 5:
             { System.out.print(yytext());
             }
             // fall through
-          case 5: break;
-          case 3:
-            { numbers.add(yytext()); tokens.add("NUMBER");
+          case 13: break;
+          case 6:
+            { tokens.add("COMMENT");
             }
             // fall through
-          case 6: break;
+          case 14: break;
+          case 7:
+            { tokens.add("DECLARATION");
+            }
+            // fall through
+          case 15: break;
+          case 8:
+            { tokens.add("STRING_CONTENT");
+            }
+            // fall through
+          case 16: break;
           default:
             zzScanError(ZZ_NO_MATCH);
         }
