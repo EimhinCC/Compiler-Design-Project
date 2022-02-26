@@ -1,5 +1,14 @@
-int i = fae2gf
-boolean a = true
-string a = "sef safe"
+//Start
+bool start;
+start = false;
+int i;
+i = 0;
+printf "Hello World"
+struct id {
+    string Name
+}
 
-
+if i==0
+then return Name
+else void
+for (i<10)
