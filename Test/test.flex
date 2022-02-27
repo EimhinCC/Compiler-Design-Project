@@ -79,29 +79,101 @@ Word = {Alpha}{IdentifierCharacter}*
 
 %eof{
     boolean error = false;
+
     System.out.print("Tokens: ");
     for(int i=0; i<tokens.size();i++){
-     system.out.print(token.get(i));
+     System.out.print(tokens.get(i) + ", ");
     }
+    
+    String state = "Null";
+
     for(int i=0; i<tokens.size();i++){
-        if(token.get(i)==COMMENT){}
-        else if(token.get(i)==TYPE) {}
-        else if(token.get(i)==WORD) {}
-        else if(token.get(i)==PRINTF) {}
-        else if(token.get(i)==STRUCT) {}
-        else if(token.get(i)==THEN) {}
-        else if(token.get(i)==IF) {}
-        else if(token.get(i)==FOR) {}
+        if(tokens.get(i).contentEquals("COMMENT")){
+                if(!state.contentEquals("Null")){
+                error = true;
+            }
+        }
+        else if(tokens.get(i).contentEquals("TYPE")) {
+            if(state.contentEquals("Null")||state.contentEquals("For")){
+                state = "Type";
+            }
+            else {
+                error = true;
+            }
+
+        }
+        else if(tokens.get(i).contentEquals("WORD")) {
+            if(state.contentEquals("Null")||state.contentEquals("Type")||state.contentEquals("Struct")){
+                state = "Word";
+            }
+            else {
+                error = true;
+            }
+        }
+        else if(tokens.get(i).contentEquals("PRINTF")) {
+            if(state.contentEquals("Null")){
+                state = "Printf";
+            }
+            else {
+                error = true;
+            }
+        }
+        else if(tokens.get(i).contentEquals("STRINGCONTENT")) {
+            if(state.contentEquals("Equal")||state.contentEquals("Printf")){
+                state = "Content";
+            }
+            else {
+                error = true;
+            }
+        }
+        else if(tokens.get(i).contentEquals("INTCONTENT")) {
+            if(state.contentEquals("Equal")||state.contentEquals("Operator")){
+                state = "Content";
+            }
+            else {
+                error = true;
+            }
+        }
+        else if(tokens.get(i).contentEquals("BOOLCONTENT")) {
+            if(state.contentEquals("Equal")){
+                state = "Content";
+            }
+            else {
+                error = true;
+            }
+        }
+        else if(tokens.get(i).contentEquals("STRUCT")) {
+
+        }
+        else if(tokens.get(i).contentEquals("THEN")) {
+
+        }
+        else if(tokens.get(i).contentEquals("IF")) {
+
+        }
+        else if(tokens.get(i).contentEquals("FOR")) {
+
+        }
+        else if(tokens.get(i).contentEquals("EQU")) {
+            if(state.contentEquals("Word")){
+                state = "Equal";
+            }
+            else {
+                error = true;
+            }
+        }
+        else if(tokens.get(i).contentEquals("SEMIC")) {
+            state = "Null";
+        }
         else {
             error = true;
-            break;
             }
     }
     if(error){
-            system.out.print("Error");
+            System.out.print("\nError");
         }
     else {
-            system.out.print("Valid");
+            System.out.print("\nValid");
         }
 %eof}
 

@@ -1,0 +1,6 @@
+//Start
+bool start;
+start = false;
+int i;
+i = 0;
+printf "Hello World";
