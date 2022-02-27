@@ -3,12 +3,14 @@ bool start;
 start = false;
 int i;
 i = 0;
-printf "Hello World"
+printf "Hello World";
 struct id {
-    string Name
+    string Name;
 }
 
-if i==0
-then return Name
-else void
-for (i<10)
+if i==0;
+then return Name;
+else void;
+for ( i<10 ) {
+    
+}

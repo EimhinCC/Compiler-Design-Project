@@ -78,9 +78,30 @@ Word = {Alpha}{IdentifierCharacter}*
 %}
 
 %eof{
+    boolean error = false;
     System.out.print("Tokens: ");
     for(int i=0; i<tokens.size();i++){
-        System.out.print(tokens.get(i) + ", ");
+     system.out.print(token.get(i));
+    }
+        for(int i=0; i<tokens.size();i++){
+        if(token.get(i)==COMMENT){}
+        else if(token.get(i)==TYPE) {}
+        else if(token.get(i)==WORD) {}
+        else if(token.get(i)==PRINTF) {}
+        else if(token.get(i)==STRUCT) {}
+        else if(token.get(i)==THEN) {}
+        else if(token.get(i)==IF) {}
+        else if(token.get(i)==FOR) {}
+        else {
+            error = true;
+            break;
+            }
+        if(error){
+            system.out.print("Error");
+        }
+        else {
+            system.out.print("Valid");
+        }
     }
 %eof}
 
@@ -94,6 +115,7 @@ Word = {Alpha}{IdentifierCharacter}*
 {Declaration} {tokens.add("DECLARATION");}
 {Comment} {tokens.add("COMMENT");}
 {Struct} {tokens.add("STRUCT");}
+{Printf} {tokens.add("PRINTF");}
 {If} {tokens.add("IF");}
 {Then} {tokens.add("THEN");}
 {Else} {tokens.add("ELSE");}
