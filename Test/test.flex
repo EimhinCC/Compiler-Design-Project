@@ -83,7 +83,7 @@ Word = {Alpha}{IdentifierCharacter}*
     for(int i=0; i<tokens.size();i++){
      system.out.print(token.get(i));
     }
-        for(int i=0; i<tokens.size();i++){
+    for(int i=0; i<tokens.size();i++){
         if(token.get(i)==COMMENT){}
         else if(token.get(i)==TYPE) {}
         else if(token.get(i)==WORD) {}
@@ -96,13 +96,13 @@ Word = {Alpha}{IdentifierCharacter}*
             error = true;
             break;
             }
-        if(error){
+    }
+    if(error){
             system.out.print("Error");
         }
-        else {
+    else {
             system.out.print("Valid");
         }
-    }
 %eof}
 
 %%
