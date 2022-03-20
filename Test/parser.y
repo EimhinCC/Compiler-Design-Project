@@ -24,6 +24,7 @@
 %token Operator
 %token Word
 %token EOL
+%token PLUS
 
 %type Struct
 %type Function
@@ -38,9 +39,23 @@ input:
 |   Function
 |   Struct
 
+exp:
+    IntContent { $$ = $1; }
+|    exp PLUS exp { $$ = $1 + $3; }
+|    exp SUB exp { $$ = $1 - $3; }
+;
+
+Comparison:
+    exp GT exp { $$ = $1 > $3; }
+
+Type:
+    String
+|   Int
+|   Bool       
+
 
 Struct:
-    Struct {Word} {COpenB} {Declaration}+ {CCloseB}
+    Struct Word COpenB Declaration CCloseB
 
 %%
 
