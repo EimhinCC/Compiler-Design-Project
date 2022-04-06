@@ -15,7 +15,7 @@ int yyerror(char *s);
     bool tf;
 }
 
-%token Int Bool String Void SemiC EQU PLUS SUB MUL DIV AND OR MOD Printf If Then Else For Return OpenB CloseB COpenB CCloseB Comma
+%token Int Bool String Void SemiC EQU PLUS SUB MUL DIV AND OR MOD NOT Printf If Then Else For Return OpenB CloseB COpenB CCloseB Comma
 
 %token <word> Word
 %token <num> IntContent
@@ -27,6 +27,9 @@ int yyerror(char *s);
 %type <num> Function
 %type <num> Parameter
 %type <num> Code
+%token <tf> nExp
+%token <tf> aExp
+%token <tf> oExp
 
 /* rules */
 %%
@@ -62,6 +65,25 @@ Int {$$ = 1}
 |   String {$$ = 3}
 |   Void {$$ = 4}      
 ;
+
+nExp:
+NOT aExp {$$ = !$1;}
+|   aExp
+;
+
+aExp:
+aExp AND BoolContent
+|   oExp
+|   (nExp) AND aExp
+;
+
+oExp:
+oExp OR BoolContent
+|   BoolContent
+|   (nExp) OR oExp
+|   (nExp)
+
+
 
 
 %%

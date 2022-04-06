@@ -38,6 +38,7 @@ Void "void"
 And "and"
 Mod "mod"
 Or "or"
+Not "not"
 OpenB "("
 CloseB ")"
 COpenB "{"
@@ -80,6 +81,7 @@ Word ({Alpha}{IdentifierCharacter}*)
 {And} {return(AND);}
 {Or} {return(OR);}
 {Mod} {return(MOD);}
+{Not} {return(NOT);}
 
 {OpenB} {return(OpenB)}
 {CloseB} {return(CloseB)}
