@@ -1,55 +1,67 @@
 %{
 
 #include <string.h>
+#include <stdbool.h>
 
 int yylex();
-int yyerrror(char *s);
+int yyerror(char *s);
 
 %}
 
 %union {
     int num;
     char sym;
-    String string; 
+    char word[99]; 
     bool tf;
 }
 
-%token Int Bool String Void SemiC EQU PLUS SUB MUL DIV AND MOD Printf If Then Else For Return Word EOL ReturnType
+%token Int Bool String Void SemiC EQU PLUS SUB MUL DIV AND OR MOD Printf If Then Else For Return OpenB CloseB COpenB CCloseB Comma
 
+%token <word> Word
 %token <num> IntContent
-%token <string> StringContent
+%token <word> StringContent
 %token <tf> BoolContent
 %token <sym> Compare
-%type <num> exp
-%type <sym> Type
-%type <sym> ReturnType
+%type <num> ReturnType
+%type <word> Type
+%type <num> Function
+%type <num> Parameter
+%type <num> Code
 
 /* rules */
 %%
 
 input: 
-Function
+Function 
+| input input
+;
 
 Function:
-ReturnType Word
+ReturnType Word OpenB Parameter CloseB COpenB Code CCloseB
+;
 
-exp:
-    IntContent { $$ = $1; }
-|   exp PLUS exp { $$ = $1 + $3; }
-|   exp SUB exp { $$ = $1 - $3; }
-|   exp MUL exp { $$ = $1 * $3; }
-|   exp DIV exp { $$ = $1 / $3; }
+Parameter:
+Type {$$ = 1}
+|   Parameter Comma Parameter 
+;
+
+Code:
+Type SemiC {$$ = 1}
+| Word {$$ = 1}
 ;
 
 Type:
-    String
-|   Int
-|   Bool 
+    String Word {$$ = $2;}
+|   Int Word {$$ = $2;}
+|   Bool Word {$$ = $2;}
+;
 
-ReturnType
-Type
-|   Void      
-
+ReturnType:
+Int {$$ = 1}
+|   Bool {$$ = 2}
+|   String {$$ = 3}
+|   Void {$$ = 4}      
+;
 
 
 %%
@@ -60,7 +72,7 @@ int main() {
     return 0;
 }
 
-yyerrror(char* s) {
+int yyerror(char* s) {
     printf("Error: %s\n", s);
     return 0;
 }

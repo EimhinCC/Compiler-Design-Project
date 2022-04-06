@@ -50,18 +50,21 @@
      MUL = 266,
      DIV = 267,
      AND = 268,
-     MOD = 269,
-     Printf = 270,
-     If = 271,
-     Then = 272,
-     Else = 273,
-     For = 274,
-     Word = 275,
-     EOL = 276,
-     ReturnType = 277,
-     IntContent = 278,
-     StringContent = 279,
-     BoolContent = 280
+     OR = 269,
+     MOD = 270,
+     Printf = 271,
+     If = 272,
+     Then = 273,
+     Else = 274,
+     For = 275,
+     Return = 276,
+     Word = 277,
+     EOL = 278,
+     ReturnType = 279,
+     IntContent = 280,
+     StringContent = 281,
+     BoolContent = 282,
+     Compare = 283
    };
 #endif
 
@@ -72,17 +75,17 @@ typedef union YYSTYPE
 {
 
 /* Line 1676 of yacc.c  */
-#line 10 "parser.y"
+#line 11 "parser.y"
 
     int num;
     char sym;
-    String string; 
+    char word[99]; 
     bool tf;
 
 
 
 /* Line 1676 of yacc.c  */
-#line 86 "parser.tab.h"
+#line 89 "parser.tab.h"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */

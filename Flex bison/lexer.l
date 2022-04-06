@@ -1,6 +1,7 @@
 %{
 
 #include <string.h>
+#include <stdbool.h>
 #include "parser.tab.h"
 
 void showError();
@@ -55,6 +56,7 @@ Sub "-"
 Mul "*"
 Div "/"
 Dot "\."
+Comma ","
 Compare ({Less}|{Greater}|{LessEQU}|{GreaterEQU}|{EQUIV}|{NotEQU})
 IdentifierCharacter ({Alpha}|{Digit})
 Word ({Alpha}{IdentifierCharacter}*)
@@ -66,8 +68,8 @@ Word ({Alpha}{IdentifierCharacter}*)
 {String} {return(String);}
 {Void} {return(Void);}
 
-{IntContent} {yylval.number = atoi(yytext); maxNum(atoi(yytext)); return(IntContent);}
-{StringContent} {sscanf(yytext, "%s", yylval.string); return(StringContent);}
+{IntContent} {yylval.num = atoi(yytext); maxNum(atoi(yytext)); return(IntContent);}
+{StringContent} {sscanf(yytext, "%s", yylval.word); return(StringContent);}
 {BoolContent} {sscanf(yytext, "%d", yylval.tf); return(BoolContent);}
 
 {EQU} {return(EQU);}
@@ -79,23 +81,28 @@ Word ({Alpha}{IdentifierCharacter}*)
 {Or} {return(OR);}
 {Mod} {return(MOD);}
 
+{OpenB} {return(OpenB)}
+{CloseB} {return(CloseB)}
+{COpenB} {return(COpenB)}
+{CCloseB} {return(CCloseB)}
 
 {Comment} {/* Skip comments */}
-{Printf} {return(printf);}
+{Printf} {return(Printf);}
 {If} {return(If);}
 {Then} {return(Then);}
 {Else} {return(Else);}
 {For} {return(For);}
 {Return} {return(Return);}
 {Compare} {sscanf(yytext, "%s", yylval.sym); return(Compare);}
-{Word} {sscanf(yytext, "%s", yylval.string);return("Word");}
+{Word} {sscanf(yytext, "%s", yylval.word);return(Word);}
 {SemiC} {return(SemiC);}
+{Comma} {return(Comma);}
 {WhiteSp} {}
-\n {return EOL;}
+\n {/* Do nothing */}}
 . {showError();}
 %%
 
-yywrap(){}
+int yywrap(){}
 
 int main() {
     printf("Enter a string: ");
