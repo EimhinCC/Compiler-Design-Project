@@ -1,4 +1,2 @@
-void main (){
-int i;
-i = 0;
+void main (int x){
 }
