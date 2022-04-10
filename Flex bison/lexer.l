@@ -4,6 +4,8 @@
 #include <stdbool.h>
 #include "parser.tab.h"
 
+int valid = 1;
+
 void showError(){
     printf("Invalid input");
     valid = 0;
@@ -15,7 +17,7 @@ void maxNum(int num) {
     }
 }
 
-int valid = 1;
+
 %}
 
 LineTerminator \r|\n|\r\n
@@ -101,7 +103,7 @@ Word ({Alpha}{IdentifierCharacter}*)
 {For} {printf("For ");return(For);}
 {Return} {printf("Return ");return(Return);}
 {Compare} {printf("Compare ");sscanf(yytext, "%s", yylval.sym); return(Compare);}
-{Word} {printf("Woed ");sscanf(yytext, "%s", yylval.word);return(Word);}
+{Word} {printf("Word ");sscanf(yytext, "%s", yylval.word);return(Word);}
 {SemiC} {printf("; ");return(SemiC);}
 {Comma} {printf(", ");return(Comma);}
 {WhiteSp} {}
@@ -110,9 +112,10 @@ Word ({Alpha}{IdentifierCharacter}*)
 %%
 
 int yywrap(){}
+/*
 int main() {
     FILE *fp;
-    char filename[50];
+   char filename[50];
     printf("Enter the filename: \n");
     scanf("%s",filename);
     fp = fopen(filename,"r");
@@ -128,6 +131,7 @@ int main() {
 
     return 0;
 }
+*/
 
 
 

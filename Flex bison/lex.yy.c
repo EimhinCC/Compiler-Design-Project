@@ -428,6 +428,8 @@ char *yytext;
 #include <stdbool.h>
 #include "parser.tab.h"
 
+int valid = 1;
+
 void showError(){
     printf("Invalid input");
     valid = 0;
@@ -439,8 +441,8 @@ void maxNum(int num) {
     }
 }
 
-int valid = 1;
-#line 444 "lex.yy.c"
+
+#line 446 "lex.yy.c"
 
 /* Macros after this point can all be overridden by user definitions in
  * section 1.
@@ -591,10 +593,10 @@ YY_DECL
 	register char *yy_cp, *yy_bp;
 	register int yy_act;
 
-#line 74 "lexer.l"
+#line 76 "lexer.l"
 
 
-#line 598 "lex.yy.c"
+#line 600 "lex.yy.c"
 
 	if ( yy_init )
 		{
@@ -679,180 +681,180 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 76 "lexer.l"
+#line 78 "lexer.l"
 {printf("Int "); return(Int);}
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 77 "lexer.l"
+#line 79 "lexer.l"
 {printf("Bool "); return(Bool);}
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 78 "lexer.l"
+#line 80 "lexer.l"
 {printf("String "); return(String);}
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 79 "lexer.l"
+#line 81 "lexer.l"
 {printf("Void "); return(Void);}
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 80 "lexer.l"
+#line 82 "lexer.l"
 {printf("IntC");yylval.num = atoi(yytext); maxNum(atoi(yytext)); return(IntContent);}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 81 "lexer.l"
+#line 83 "lexer.l"
 {printf("StrC");sscanf(yytext, "%s", yylval.word); return(StringContent);}
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 82 "lexer.l"
+#line 84 "lexer.l"
 {printf("BoolC");sscanf(yytext, "%d", yylval.tf); return(BoolContent);}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 83 "lexer.l"
+#line 85 "lexer.l"
 {printf("EQU ");return(EQU);}
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 84 "lexer.l"
+#line 86 "lexer.l"
 {printf("Plus ");return(PLUS);}
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 85 "lexer.l"
+#line 87 "lexer.l"
 {printf("Sub ");return(SUB);}
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 86 "lexer.l"
+#line 88 "lexer.l"
 {printf("Mul ");return(MUL);}
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 87 "lexer.l"
+#line 89 "lexer.l"
 {printf("Div ");return(DIV);}
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 88 "lexer.l"
+#line 90 "lexer.l"
 {printf("And ");return(AND);}
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 89 "lexer.l"
+#line 91 "lexer.l"
 {printf("Or ");return(OR);}
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 90 "lexer.l"
+#line 92 "lexer.l"
 {printf("Mod ");return(MOD);}
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 91 "lexer.l"
+#line 93 "lexer.l"
 {printf("Not ");return(NOT);}
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 92 "lexer.l"
+#line 94 "lexer.l"
 {printf("( "); return(OpenB);}
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 93 "lexer.l"
+#line 95 "lexer.l"
 {printf(") "); return(CloseB);}
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 94 "lexer.l"
+#line 96 "lexer.l"
 {printf("{ "); return(COpenB);}
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 95 "lexer.l"
+#line 97 "lexer.l"
 {printf("} "); return(CCloseB);}
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 96 "lexer.l"
+#line 98 "lexer.l"
 {printf("Comment "); /* Skip comments */}
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 97 "lexer.l"
+#line 99 "lexer.l"
 {printf("Print ");return(Printf);}
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 98 "lexer.l"
+#line 100 "lexer.l"
 {printf("if ");return(If);}
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 99 "lexer.l"
+#line 101 "lexer.l"
 {printf("Then ");return(Then);}
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 100 "lexer.l"
+#line 102 "lexer.l"
 {printf("Else ");return(Else);}
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 101 "lexer.l"
+#line 103 "lexer.l"
 {printf("For ");return(For);}
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 102 "lexer.l"
+#line 104 "lexer.l"
 {printf("Return ");return(Return);}
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 103 "lexer.l"
+#line 105 "lexer.l"
 {printf("Compare ");sscanf(yytext, "%s", yylval.sym); return(Compare);}
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 104 "lexer.l"
+#line 106 "lexer.l"
 {printf("Woed ");sscanf(yytext, "%s", yylval.word);return(Word);}
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 105 "lexer.l"
+#line 107 "lexer.l"
 {printf("; ");return(SemiC);}
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 106 "lexer.l"
+#line 108 "lexer.l"
 {printf(", ");return(Comma);}
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 107 "lexer.l"
+#line 109 "lexer.l"
 {}
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 108 "lexer.l"
+#line 110 "lexer.l"
 {/* Do nothing */}
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 109 "lexer.l"
+#line 111 "lexer.l"
 {showError();}
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 110 "lexer.l"
+#line 112 "lexer.l"
 ECHO;
 	YY_BREAK
-#line 856 "lex.yy.c"
+#line 858 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1738,13 +1740,14 @@ int main()
 	return 0;
 	}
 #endif
-#line 110 "lexer.l"
+#line 112 "lexer.l"
 
 
 int yywrap(){}
+/*
 int main() {
     FILE *fp;
-    char filename[50];
+   char filename[50];
     printf("Enter the filename: \n");
     scanf("%s",filename);
     fp = fopen(filename,"r");
@@ -1760,6 +1763,7 @@ int main() {
 
     return 0;
 }
+*/
 
 
 

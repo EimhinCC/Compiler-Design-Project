@@ -71,31 +71,40 @@
 #line 1 "parser.y"
 
 
+#include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
 
 int yylex();
+FILE *yyin;
 int yyerror(char *s);
+
+void intAdd(char *varName);
+void strAdd(char *varName);
+void boolAdd(char *varName);
+void funcAdd(char *varName);
+int isDeclared(char *varName, char array[100][15]);
+
 char ints[100][15];
-int i = 0;
+int i;
 char strs[100][15];
-int j = 0;
+int j;
 char bools[100][15];
-int k = 0;
+int k;
 char functions[100][15];
-int l = 2;
-functions[0] = "main"
-functions[1] = "printf"
+int l;
+
 
 
 
 
 /* Line 189 of yacc.c  */
-#line 95 "parser.tab.c"
+#line 104 "parser.tab.c"
 
 /* Enabling traces.  */
 #ifndef YYDEBUG
-# define YYDEBUG 0
+# define YYDEBUG 1
 #endif
 
 /* Enabling verbose error messages.  */
@@ -158,17 +167,17 @@ typedef union YYSTYPE
 {
 
 /* Line 214 of yacc.c  */
-#line 22 "parser.y"
+#line 31 "parser.y"
 
     int num;
     char sym;
-    char word[99]; 
+    char * word; 
     bool tf;
 
 
 
 /* Line 214 of yacc.c  */
-#line 172 "parser.tab.c"
+#line 181 "parser.tab.c"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
@@ -180,7 +189,7 @@ typedef union YYSTYPE
 
 
 /* Line 264 of yacc.c  */
-#line 184 "parser.tab.c"
+#line 193 "parser.tab.c"
 
 #ifdef short
 # undef short
@@ -478,10 +487,10 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    53,    53,    54,    55,    59,    62,    70,    71,    75,
-      76,    77,    78,    79,    82,    93,    94,    95,    99,   100,
-     101,   102,   103,   104,   108,   109,   110,   111,   115,   116,
-     120,   121,   122,   126,   127,   128,   129
+       0,    63,    63,    64,    65,    69,    72,    80,    81,    85,
+      86,    87,    88,    89,    92,   103,   104,   105,   109,   110,
+     111,   112,   113,   114,   118,   119,   120,   121,   125,   126,
+     130,   131,   132,   136,   137,   138,   139
 };
 #endif
 
@@ -1425,210 +1434,210 @@ yyreduce:
         case 6:
 
 /* Line 1455 of yacc.c  */
-#line 62 "parser.y"
+#line 72 "parser.y"
     {(yyval.num) = (yyvsp[(1) - (9)].num);}
     break;
 
   case 7:
 
 /* Line 1455 of yacc.c  */
-#line 70 "parser.y"
+#line 80 "parser.y"
     {(yyval.num)=1;}
     break;
 
   case 8:
 
 /* Line 1455 of yacc.c  */
-#line 71 "parser.y"
+#line 81 "parser.y"
     {(yyval.num)=1;}
     break;
 
   case 9:
 
 /* Line 1455 of yacc.c  */
-#line 75 "parser.y"
+#line 85 "parser.y"
     {;}
     break;
 
   case 10:
 
 /* Line 1455 of yacc.c  */
-#line 76 "parser.y"
-    {if(isDeclared((yyvsp[(1) - (3)].word), ints)){(yyval.num) = (yyvsp[(1) - (3)].word);} else {yyerror((yyvsp[(1) - (3)].word));};}
+#line 86 "parser.y"
+    {if(isDeclared((yyvsp[(1) - (3)].word), ints)){(yyval.num) = 1;} else {yyerror((yyvsp[(1) - (3)].word));};}
     break;
 
   case 11:
 
 /* Line 1455 of yacc.c  */
-#line 77 "parser.y"
-    {if(isDeclared((yyvsp[(1) - (3)].word), strs)){(yyval.num) = (yyvsp[(1) - (3)].word);} else {yyerror((yyvsp[(1) - (3)].word));};}
+#line 87 "parser.y"
+    {if(isDeclared((yyvsp[(1) - (3)].word), strs)){(yyval.num) = 2;} else {yyerror((yyvsp[(1) - (3)].word));};}
     break;
 
   case 12:
 
 /* Line 1455 of yacc.c  */
-#line 78 "parser.y"
-    {if(isDeclared((yyvsp[(1) - (3)].word), bools)){(yyval.num) = (yyvsp[(1) - (3)].word);} else {yyerror((yyvsp[(1) - (3)].word));};}
+#line 88 "parser.y"
+    {if(isDeclared((yyvsp[(1) - (3)].word), bools)){(yyval.num) = 3;} else {yyerror((yyvsp[(1) - (3)].word));};}
     break;
 
   case 14:
 
 /* Line 1455 of yacc.c  */
-#line 82 "parser.y"
+#line 92 "parser.y"
     {(yyval.num)=1;}
     break;
 
   case 15:
 
 /* Line 1455 of yacc.c  */
-#line 93 "parser.y"
-    {(yyval.word) = (yyvsp[(2) - (2)].word); strAdd((yyvsp[(2) - (2)].word));;}
+#line 103 "parser.y"
+    {(yyval.num) = 1; strAdd((yyvsp[(2) - (2)].word));;}
     break;
 
   case 16:
 
 /* Line 1455 of yacc.c  */
-#line 94 "parser.y"
-    {(yyval.word) = (yyvsp[(2) - (2)].word); intAdd((yyvsp[(2) - (2)].word));;}
+#line 104 "parser.y"
+    {(yyval.num) = 2; intAdd((yyvsp[(2) - (2)].word));;}
     break;
 
   case 17:
 
 /* Line 1455 of yacc.c  */
-#line 95 "parser.y"
-    {(yyval.word) = (yyvsp[(2) - (2)].word); boolAdd((yyvsp[(2) - (2)].word));;}
+#line 105 "parser.y"
+    {(yyval.num) = 3; boolAdd((yyvsp[(2) - (2)].word));;}
     break;
 
   case 19:
 
 /* Line 1455 of yacc.c  */
-#line 100 "parser.y"
+#line 110 "parser.y"
     {(yyval.num) = (yyvsp[(1) - (3)].num) + (yyvsp[(3) - (3)].num);;}
     break;
 
   case 20:
 
 /* Line 1455 of yacc.c  */
-#line 101 "parser.y"
+#line 111 "parser.y"
     {(yyval.num) = (yyvsp[(1) - (3)].num) - (yyvsp[(3) - (3)].num);;}
     break;
 
   case 21:
 
 /* Line 1455 of yacc.c  */
-#line 102 "parser.y"
+#line 112 "parser.y"
     {(yyval.num) = (yyvsp[(1) - (3)].num) * (yyvsp[(3) - (3)].num);;}
     break;
 
   case 22:
 
 /* Line 1455 of yacc.c  */
-#line 103 "parser.y"
+#line 113 "parser.y"
     {(yyval.num) = (yyvsp[(1) - (3)].num) / (yyvsp[(3) - (3)].num);;}
     break;
 
   case 23:
 
 /* Line 1455 of yacc.c  */
-#line 104 "parser.y"
+#line 114 "parser.y"
     {(yyval.num) = (yyvsp[(1) - (3)].num) % (yyvsp[(3) - (3)].num);;}
     break;
 
   case 24:
 
 /* Line 1455 of yacc.c  */
-#line 108 "parser.y"
+#line 118 "parser.y"
     {(yyval.num) = 1;;}
     break;
 
   case 25:
 
 /* Line 1455 of yacc.c  */
-#line 109 "parser.y"
+#line 119 "parser.y"
     {(yyval.num) = 2;;}
     break;
 
   case 26:
 
 /* Line 1455 of yacc.c  */
-#line 110 "parser.y"
+#line 120 "parser.y"
     {(yyval.num) = 3;;}
     break;
 
   case 27:
 
 /* Line 1455 of yacc.c  */
-#line 111 "parser.y"
+#line 121 "parser.y"
     {(yyval.num) = 4;;}
     break;
 
   case 28:
 
 /* Line 1455 of yacc.c  */
-#line 115 "parser.y"
+#line 125 "parser.y"
     {(yyval.tf) = !(yyvsp[(2) - (2)].tf);;}
     break;
 
   case 29:
 
 /* Line 1455 of yacc.c  */
-#line 116 "parser.y"
+#line 126 "parser.y"
     {(yyval.tf) = (yyvsp[(1) - (1)].tf);;}
     break;
 
   case 30:
 
 /* Line 1455 of yacc.c  */
-#line 120 "parser.y"
+#line 130 "parser.y"
     {(yyval.tf)= (yyvsp[(1) - (3)].tf) && (yyvsp[(3) - (3)].tf);;}
     break;
 
   case 31:
 
 /* Line 1455 of yacc.c  */
-#line 121 "parser.y"
+#line 131 "parser.y"
     {(yyval.tf) = (yyvsp[(1) - (1)].tf);;}
     break;
 
   case 32:
 
 /* Line 1455 of yacc.c  */
-#line 122 "parser.y"
+#line 132 "parser.y"
     {(yyval.tf) = (yyvsp[(2) - (5)].tf) && (yyvsp[(5) - (5)].tf);;}
     break;
 
   case 33:
 
 /* Line 1455 of yacc.c  */
-#line 126 "parser.y"
-    {(yyval.tf) = (yyvsp[(1) - (3)].tf) || (yyval.tf)3;;}
+#line 136 "parser.y"
+    {(yyval.tf) = 1;;}
     break;
 
   case 34:
 
 /* Line 1455 of yacc.c  */
-#line 127 "parser.y"
+#line 137 "parser.y"
     {(yyval.tf) = (yyvsp[(1) - (1)].tf);;}
     break;
 
   case 35:
 
 /* Line 1455 of yacc.c  */
-#line 128 "parser.y"
+#line 138 "parser.y"
     {(yyval.tf) = (yyvsp[(2) - (5)].tf)|(yyvsp[(5) - (5)].tf);;}
     break;
 
   case 36:
 
 /* Line 1455 of yacc.c  */
-#line 129 "parser.y"
+#line 139 "parser.y"
     {(yyval.tf) = (yyvsp[(2) - (3)].tf);;}
     break;
 
 
 
 /* Line 1455 of yacc.c  */
-#line 1632 "parser.tab.c"
+#line 1641 "parser.tab.c"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -1840,10 +1849,25 @@ yyreturn:
 
 
 /* Line 1675 of yacc.c  */
-#line 134 "parser.y"
+#line 144 "parser.y"
 
 
 int main() {
+
+    i = 0;
+    j = 0;
+    k = 0;
+    l = 2;
+    strcpy(functions[0], "main");
+    strcpy(functions[1], "printf");
+
+    FILE *fp;
+    char filename[50];
+    printf("Enter the filename: \n");
+    scanf("%s",filename);
+    fp = fopen(filename,"r");
+    yyin = fp;
+
     yyparse();
     
     return 0;
@@ -1854,30 +1878,32 @@ int yyerror(char* s) {
     return 0;
 }
 
-void intAdd(String varName) {
+void intAdd(char * varName) {
     strcpy(ints[i], varName);
     i++;
     return;
 }
-void strAdd(String varName) {
+void strAdd(char * varName) {
     strcpy(strs[j], varName);
     j++;
     return;
 }
-void boolAdd(String varName) {
+void boolAdd(char * varName) {
     strcpy(bools[k], varName);
     k++;
     return;
 }
-void funcAdd(String varName) {
+void funcAdd(char * varName) {
     strcpy(functions[l], varName);
     l++;
     return;
 }
-int isDeclared(String varName, char array []) {
+int isDeclared(char * varName, char array[100][15]) {
     for(int i = 0; i<100; i++) {
+        if (array[i]!= NULL) {
         if (strcmp(varName, array[i])){
             return 1;
+        }
         }
     }
     return 0;
