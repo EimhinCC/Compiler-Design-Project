@@ -1,4 +1,5 @@
 struct i {
     int j;
     string l;
+    bool k;
 }

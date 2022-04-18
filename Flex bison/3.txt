@@ -1,0 +1,7 @@
+void main () { 
+    int i;
+    string x;
+    if ( i = 22 ) {
+        x = "string";
+    {
+}

@@ -422,9 +422,9 @@ static char *yy_last_accepting_cpos;
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
-#line 1 "lexer.l"
+#line 1 "ToY.l"
 #define INITIAL 0
-#line 2 "lexer.l"
+#line 2 "ToY.l"
 
 #include <string.h>
 #include <stdbool.h>
@@ -595,7 +595,7 @@ YY_DECL
 	register char *yy_cp, *yy_bp;
 	register int yy_act;
 
-#line 77 "lexer.l"
+#line 77 "ToY.l"
 
 
 #line 602 "lex.yy.c"
@@ -683,182 +683,182 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 79 "lexer.l"
+#line 79 "ToY.l"
 {printf("Int "); return(Int);}
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 80 "lexer.l"
+#line 80 "ToY.l"
 {printf("Bool "); return(Bool);}
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 81 "lexer.l"
+#line 81 "ToY.l"
 {printf("String "); return(String);}
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 82 "lexer.l"
+#line 82 "ToY.l"
 {printf("Void "); return(Void);}
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 83 "lexer.l"
+#line 83 "ToY.l"
 {printf("Struct "); return(Struct);}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 84 "lexer.l"
+#line 84 "ToY.l"
 {printf("IntC");yylval.num = atoi(yytext); maxNum(atoi(yytext)); return(IntContent);}
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 85 "lexer.l"
+#line 85 "ToY.l"
 {printf("StrC");yylval.word=yytext; return(StringContent);}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 86 "lexer.l"
+#line 86 "ToY.l"
 {printf("BoolC");yylval.word=yytext; return(BoolContent);}
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 87 "lexer.l"
+#line 87 "ToY.l"
 {printf("EQU ");return(EQU);}
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 88 "lexer.l"
+#line 88 "ToY.l"
 {printf("Plus ");return(PLUS);}
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 89 "lexer.l"
+#line 89 "ToY.l"
 {printf("Sub ");return(SUB);}
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 90 "lexer.l"
+#line 90 "ToY.l"
 {printf("Mul ");return(MUL);}
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 91 "lexer.l"
+#line 91 "ToY.l"
 {printf("Div ");return(DIV);}
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 92 "lexer.l"
+#line 92 "ToY.l"
 {printf("And ");return(AND);}
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 93 "lexer.l"
+#line 93 "ToY.l"
 {printf("Or ");return(OR);}
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 94 "lexer.l"
+#line 94 "ToY.l"
 {printf("Mod ");return(MOD);}
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 95 "lexer.l"
+#line 95 "ToY.l"
 {printf("Not ");return(NOT);}
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 96 "lexer.l"
+#line 96 "ToY.l"
 {printf("( "); return(OpenB);}
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 97 "lexer.l"
+#line 97 "ToY.l"
 {printf(") "); return(CloseB);}
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 98 "lexer.l"
+#line 98 "ToY.l"
 {printf("{ "); return(COpenB);}
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 99 "lexer.l"
+#line 99 "ToY.l"
 {printf("} "); return(CCloseB);}
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 100 "lexer.l"
+#line 100 "ToY.l"
 {printf("Comment "); /* Skip comments */}
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 101 "lexer.l"
+#line 101 "ToY.l"
 {printf("Print ");return(Printf);}
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 102 "lexer.l"
+#line 102 "ToY.l"
 {printf("if ");return(If);}
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 103 "lexer.l"
+#line 103 "ToY.l"
 {printf("Then ");return(Then);}
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 104 "lexer.l"
+#line 104 "ToY.l"
 {printf("Else ");return(Else);}
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 105 "lexer.l"
+#line 105 "ToY.l"
 {printf("For ");return(For);}
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 106 "lexer.l"
+#line 106 "ToY.l"
 {printf("Return ");return(Return);}
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 107 "lexer.l"
+#line 107 "ToY.l"
 {printf("Compare ");yylval.sym=yytext[0]; return(Compare);}
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 108 "lexer.l"
+#line 108 "ToY.l"
 {printf("Word ");yylval.word=yytext;printf("%s ", yytext);return(Word);}
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 109 "lexer.l"
+#line 109 "ToY.l"
 {printf("; ");return(SemiC);}
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 110 "lexer.l"
+#line 110 "ToY.l"
 {printf(", ");return(Comma);}
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 111 "lexer.l"
+#line 111 "ToY.l"
 {}
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 112 "lexer.l"
+#line 112 "ToY.l"
 {/* Do nothing */}
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 113 "lexer.l"
+#line 113 "ToY.l"
 {printf("ERROR ");showError();}
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 114 "lexer.l"
+#line 114 "ToY.l"
 ECHO;
 	YY_BREAK
 #line 865 "lex.yy.c"
@@ -1747,7 +1747,7 @@ int main()
 	return 0;
 	}
 #endif
-#line 114 "lexer.l"
+#line 114 "ToY.l"
 
 
 int yywrap(){}

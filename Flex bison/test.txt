@@ -31,3 +31,10 @@ return
 ; 
 , 
 testword1
+
+
+input: 
+Struct Word COpenB Type SemiC CCloseB {validParse=1;}
+|   FuncDef {validParse=1;}
+|   input FuncDef {validParse=1;}
+;

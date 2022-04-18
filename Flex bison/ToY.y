@@ -72,25 +72,26 @@ Type SemiC
 |   TypeList Type SemiC {$$=1}
 
 FuncDef:
-ReturnType Word OpenB Parameter CloseB COpenB Code CCloseB SemiC {$$ = $1}
+ReturnType Word OpenB Parameter CloseB COpenB Code CCloseB {$$ = $1}
 ;
 
 FuncCall:
 Word OpenB Parameter CloseB SemiC{if(isDeclared($1, functions)){$$ = 1;} else {yyerror($1);}}
 | Printf CloseB StringContent CCloseB SemiC {$$ = 1}
 
-Parameter:
-Type {$$=1}
+Parameter: {$$=1}
+|   Type {$$=1}
 |   Parameter Comma Type {$$=1}
 ;
 
 Code: 
 Type SemiC {}
 |   FuncCall {}
-|   Word EQU Number {if(isDeclared($1, ints)){$$ = 1;} else {yyerror($1);}}
-|   Word EQU StringContent {if(isDeclared($1, strs)){$$ = 2;} else {yyerror($1);}}
-|   Word EQU nExp {if(isDeclared($1, bools)){$$ = 3;} else {yyerror($1);}}
-|   Statement
+|   Word EQU Number SemiC{if(isDeclared($1, ints)){$$ = 1;} else {yyerror($1);}}
+|   Word EQU StringContent SemiC{if(isDeclared($1, strs)){$$ = 2;} else {yyerror($1);}}
+|   Word EQU nExp SemiC{if(isDeclared($1, bools)){$$ = 3;} else {yyerror($1);}}
+|   Statement {}
+|   Code Code {}
 
 Statement:
 For Condition COpenB Code CCloseB {$$=1}
@@ -178,6 +179,7 @@ int main() {
 
 int yyerror(char* s) {
     printf("Error: %s\n", s);
+    validParse=0;
     return 0;
 }
 

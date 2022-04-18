@@ -68,7 +68,7 @@
 /* Copy the first part of user declarations.  */
 
 /* Line 189 of yacc.c  */
-#line 1 "parser.y"
+#line 1 "ToY.y"
 
 
 #include <stdio.h>
@@ -101,7 +101,7 @@ int l;
 
 
 /* Line 189 of yacc.c  */
-#line 105 "parser.tab.c"
+#line 105 "ToY.tab.c"
 
 /* Enabling traces.  */
 #ifndef YYDEBUG
@@ -169,7 +169,7 @@ typedef union YYSTYPE
 {
 
 /* Line 214 of yacc.c  */
-#line 32 "parser.y"
+#line 32 "ToY.y"
 
     int num;
     char sym;
@@ -179,7 +179,7 @@ typedef union YYSTYPE
 
 
 /* Line 214 of yacc.c  */
-#line 183 "parser.tab.c"
+#line 183 "ToY.tab.c"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
@@ -191,7 +191,7 @@ typedef union YYSTYPE
 
 
 /* Line 264 of yacc.c  */
-#line 195 "parser.tab.c"
+#line 195 "ToY.tab.c"
 
 #ifdef short
 # undef short
@@ -1476,294 +1476,294 @@ yyreduce:
         case 2:
 
 /* Line 1455 of yacc.c  */
-#line 65 "parser.y"
+#line 65 "ToY.y"
     {validParse=1;;}
     break;
 
   case 3:
 
 /* Line 1455 of yacc.c  */
-#line 66 "parser.y"
+#line 66 "ToY.y"
     {validParse=1;;}
     break;
 
   case 4:
 
 /* Line 1455 of yacc.c  */
-#line 67 "parser.y"
+#line 67 "ToY.y"
     {validParse=1;;}
     break;
 
   case 6:
 
 /* Line 1455 of yacc.c  */
-#line 72 "parser.y"
+#line 72 "ToY.y"
     {(yyval.num)=1;}
     break;
 
   case 7:
 
 /* Line 1455 of yacc.c  */
-#line 75 "parser.y"
+#line 75 "ToY.y"
     {(yyval.num) = (yyvsp[(1) - (8)].num);}
     break;
 
   case 8:
 
 /* Line 1455 of yacc.c  */
-#line 79 "parser.y"
+#line 79 "ToY.y"
     {if(isDeclared((yyvsp[(1) - (5)].word), functions)){(yyval.num) = 1;} else {yyerror((yyvsp[(1) - (5)].word));};}
     break;
 
   case 9:
 
 /* Line 1455 of yacc.c  */
-#line 80 "parser.y"
+#line 80 "ToY.y"
     {(yyval.num) = 1;}
     break;
 
   case 10:
 
 /* Line 1455 of yacc.c  */
-#line 82 "parser.y"
+#line 82 "ToY.y"
     {(yyval.num)=1;}
     break;
 
   case 11:
 
 /* Line 1455 of yacc.c  */
-#line 83 "parser.y"
+#line 83 "ToY.y"
     {(yyval.num)=1;}
     break;
 
   case 12:
 
 /* Line 1455 of yacc.c  */
-#line 84 "parser.y"
+#line 84 "ToY.y"
     {(yyval.num)=1;}
     break;
 
   case 13:
 
 /* Line 1455 of yacc.c  */
-#line 88 "parser.y"
+#line 88 "ToY.y"
     {;}
     break;
 
   case 14:
 
 /* Line 1455 of yacc.c  */
-#line 89 "parser.y"
+#line 89 "ToY.y"
     {;}
     break;
 
   case 15:
 
 /* Line 1455 of yacc.c  */
-#line 90 "parser.y"
+#line 90 "ToY.y"
     {if(isDeclared((yyvsp[(1) - (4)].word), ints)){(yyval.num) = 1;} else {yyerror((yyvsp[(1) - (4)].word));};}
     break;
 
   case 16:
 
 /* Line 1455 of yacc.c  */
-#line 91 "parser.y"
+#line 91 "ToY.y"
     {if(isDeclared((yyvsp[(1) - (4)].word), strs)){(yyval.num) = 2;} else {yyerror((yyvsp[(1) - (4)].word));};}
     break;
 
   case 17:
 
 /* Line 1455 of yacc.c  */
-#line 92 "parser.y"
+#line 92 "ToY.y"
     {if(isDeclared((yyvsp[(1) - (4)].word), bools)){(yyval.num) = 3;} else {yyerror((yyvsp[(1) - (4)].word));};}
     break;
 
   case 18:
 
 /* Line 1455 of yacc.c  */
-#line 93 "parser.y"
+#line 93 "ToY.y"
     {;}
     break;
 
   case 19:
 
 /* Line 1455 of yacc.c  */
-#line 94 "parser.y"
+#line 94 "ToY.y"
     {;}
     break;
 
   case 20:
 
 /* Line 1455 of yacc.c  */
-#line 97 "parser.y"
+#line 97 "ToY.y"
     {(yyval.num)=1;}
     break;
 
   case 22:
 
 /* Line 1455 of yacc.c  */
-#line 101 "parser.y"
+#line 101 "ToY.y"
     {(yyval.num) = 1;}
     break;
 
   case 23:
 
 /* Line 1455 of yacc.c  */
-#line 102 "parser.y"
+#line 102 "ToY.y"
     {(yyval.num) = (yyvsp[(1) - (5)].num);}
     break;
 
   case 26:
 
 /* Line 1455 of yacc.c  */
-#line 109 "parser.y"
+#line 109 "ToY.y"
     {(yyval.num) = 1; strAdd((yyvsp[(2) - (2)].word));;}
     break;
 
   case 27:
 
 /* Line 1455 of yacc.c  */
-#line 110 "parser.y"
+#line 110 "ToY.y"
     {(yyval.num) = 2; intAdd((yyvsp[(2) - (2)].word));;}
     break;
 
   case 28:
 
 /* Line 1455 of yacc.c  */
-#line 111 "parser.y"
+#line 111 "ToY.y"
     {(yyval.num) = 3; boolAdd((yyvsp[(2) - (2)].word));;}
     break;
 
   case 30:
 
 /* Line 1455 of yacc.c  */
-#line 116 "parser.y"
+#line 116 "ToY.y"
     {(yyval.num) = (yyvsp[(1) - (3)].num) + (yyvsp[(3) - (3)].num);;}
     break;
 
   case 31:
 
 /* Line 1455 of yacc.c  */
-#line 117 "parser.y"
+#line 117 "ToY.y"
     {(yyval.num) = (yyvsp[(1) - (3)].num) - (yyvsp[(3) - (3)].num);;}
     break;
 
   case 32:
 
 /* Line 1455 of yacc.c  */
-#line 118 "parser.y"
+#line 118 "ToY.y"
     {(yyval.num) = (yyvsp[(1) - (3)].num) * (yyvsp[(3) - (3)].num);;}
     break;
 
   case 33:
 
 /* Line 1455 of yacc.c  */
-#line 119 "parser.y"
+#line 119 "ToY.y"
     {(yyval.num) = (yyvsp[(1) - (3)].num) / (yyvsp[(3) - (3)].num);;}
     break;
 
   case 34:
 
 /* Line 1455 of yacc.c  */
-#line 120 "parser.y"
+#line 120 "ToY.y"
     {(yyval.num) = (yyvsp[(1) - (3)].num) % (yyvsp[(3) - (3)].num);;}
     break;
 
   case 35:
 
 /* Line 1455 of yacc.c  */
-#line 124 "parser.y"
+#line 124 "ToY.y"
     {(yyval.num) = 1;;}
     break;
 
   case 36:
 
 /* Line 1455 of yacc.c  */
-#line 125 "parser.y"
+#line 125 "ToY.y"
     {(yyval.num) = 2;;}
     break;
 
   case 37:
 
 /* Line 1455 of yacc.c  */
-#line 126 "parser.y"
+#line 126 "ToY.y"
     {(yyval.num) = 3;;}
     break;
 
   case 38:
 
 /* Line 1455 of yacc.c  */
-#line 127 "parser.y"
+#line 127 "ToY.y"
     {(yyval.num) = 4;;}
     break;
 
   case 39:
 
 /* Line 1455 of yacc.c  */
-#line 131 "parser.y"
+#line 131 "ToY.y"
     {(yyval.tf) = !(yyvsp[(2) - (2)].tf);;}
     break;
 
   case 40:
 
 /* Line 1455 of yacc.c  */
-#line 132 "parser.y"
+#line 132 "ToY.y"
     {(yyval.tf) = (yyvsp[(1) - (1)].tf);;}
     break;
 
   case 41:
 
 /* Line 1455 of yacc.c  */
-#line 136 "parser.y"
+#line 136 "ToY.y"
     {(yyval.tf)= (yyvsp[(1) - (3)].tf) && (yyvsp[(3) - (3)].tf);;}
     break;
 
   case 42:
 
 /* Line 1455 of yacc.c  */
-#line 137 "parser.y"
+#line 137 "ToY.y"
     {(yyval.tf) = (yyvsp[(1) - (1)].tf);;}
     break;
 
   case 43:
 
 /* Line 1455 of yacc.c  */
-#line 138 "parser.y"
+#line 138 "ToY.y"
     {(yyval.tf) = (yyvsp[(2) - (5)].tf) && (yyvsp[(5) - (5)].tf);;}
     break;
 
   case 44:
 
 /* Line 1455 of yacc.c  */
-#line 142 "parser.y"
+#line 142 "ToY.y"
     {(yyval.tf) = 1;;}
     break;
 
   case 45:
 
 /* Line 1455 of yacc.c  */
-#line 143 "parser.y"
+#line 143 "ToY.y"
     {(yyval.tf) = (yyvsp[(1) - (1)].tf);;}
     break;
 
   case 46:
 
 /* Line 1455 of yacc.c  */
-#line 144 "parser.y"
+#line 144 "ToY.y"
     {(yyval.tf) = (yyvsp[(2) - (5)].tf)|(yyvsp[(5) - (5)].tf);;}
     break;
 
   case 47:
 
 /* Line 1455 of yacc.c  */
-#line 145 "parser.y"
+#line 145 "ToY.y"
     {(yyval.tf) = (yyvsp[(2) - (3)].tf);;}
     break;
 
 
 
 /* Line 1455 of yacc.c  */
-#line 1767 "parser.tab.c"
+#line 1767 "ToY.tab.c"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -1975,7 +1975,7 @@ yyreturn:
 
 
 /* Line 1675 of yacc.c  */
-#line 150 "parser.y"
+#line 150 "ToY.y"
 
 
 int main() {
