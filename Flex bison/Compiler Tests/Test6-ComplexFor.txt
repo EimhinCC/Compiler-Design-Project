@@ -1,0 +1,21 @@
+# Valid: Yes
+
+# Description: for loop with complex expressions
+
+int main()
+{
+	int ac1;
+	ac1 = 3;
+
+	int ac2;
+	ac2 = 5;
+
+	for(ac1 = (ac1-(ac1 mod ac2))+(((ac1*3)/4)%2); ac1 != ac2 mod 10; ac1=ac1+1-(((ac1%ac2) - (ac2*3)/12)%2);)
+	{
+		int ac1;
+		ac1 = (ac1-(ac1 mod ac2))+(((ac1*3)/4)%2);
+		return ac1;
+	}
+
+	return -1;
+}

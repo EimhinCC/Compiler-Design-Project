@@ -1,0 +1,23 @@
+# Valid: No
+
+# Description: Creating structs, declaring struct, using incorrect fields for struct assignment 
+
+struct  Name {
+	string first_name,
+	string last_name
+}
+
+struct Employee 
+{
+	Name  name
+}
+
+struct  Dept{
+ 	Employee  head
+}
+
+void function2()
+{
+	Employee em1;
+	em1.asjdnakjfn.first_name = "tom";
+}

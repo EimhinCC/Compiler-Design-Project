@@ -1,0 +1,63 @@
+# Valid: Yes
+
+# Description: Creating structs, declaring and initialising struct instances, creating  
+# 				functions, if then else clauses, for loops, calling functions, initialising 
+#				variables with returned value from functions
+
+struct  Name {
+	string first_name,
+	string last_name
+}
+
+struct Employee 
+{
+	Name  name
+}
+
+struct  Dept{
+ 	Employee  head
+ }
+
+int function(int para1,int para2,bool para3)
+{
+	para1 = 1;
+	para2 = 2;
+	
+	para3 = true;
+	
+	if( para1<para2) then
+		return 1;
+	
+	else
+		return 0;
+}
+
+void function2()
+{
+	Employee em1;
+	em1.name.first_name = "tom";
+}
+
+int main()
+{
+	int ac1;
+	ac1 = 3;
+
+	int ac2;
+	ac2 = 5;
+
+	for(ac1 =0; ac1 != ac2 mod 10;ac1=ac1+1;)
+	{
+		int ac1;
+		ac1 =2;
+		return 1;
+	}
+
+	int reutnF ;
+	function2();
+
+	reutnF = function(ac1 + ac2, ac2 % 4, 1 < 5); // pass
+	reutnF = function(ac1 * ac2 / (2 + ac1), ac2 mod 4, 1 < 5); // pass
+
+	return 0;
+}

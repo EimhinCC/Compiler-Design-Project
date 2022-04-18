@@ -1,0 +1,21 @@
+# Valid: No
+
+# Description: for loop comparison ac1 != "hello world" types do not match -> fail
+
+int main()
+{
+	int ac1;
+	ac1 = 3;
+
+	int ac2;
+	ac2 = 5;
+
+	for(ac1 =0; ac1 != "hello world";ac1=ac1+1;)
+	{
+		int ac1;
+		ac1 =2;
+		return 1;
+	}
+
+	return 0;
+}
