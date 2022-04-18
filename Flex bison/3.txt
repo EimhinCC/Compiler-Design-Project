@@ -1,6 +1,8 @@
 void main (int a, int b) {
     a=3;
-    if (a < b) then {
+    string c;
+    c="hi";
+    if (x < b) then {
         return;
     }
     else {

@@ -184,6 +184,13 @@ int main() {
     j = 0;
     k = 0;
     l = 2;
+
+    for (int i = 0; i < 100; i++) {
+        ints[i][0] = '0';
+        strs[i][0] = '0';
+        bools[i][0] = '0';
+    }   
+
     strcpy(functions[0], "main");
     strcpy(functions[1], "printf");
 
@@ -196,7 +203,7 @@ int main() {
 
     yyparse();
     for(int i = 0; i<100; i++) {
-        if (ints[i]!= NULL) {
+        if (strcmp(ints[i],"0")) {
             printf(" ||| ");
             printf(ints[i]);
             printf(" ||| ");
@@ -244,15 +251,13 @@ void funcAdd(char * varName) {
 }
 int isDeclared(char * varName, char array[100][15]) {
     printf(varName);
-    for(int i = 0; i<100; i++) {
-        if (array[i]!= NULL) {
-            if (!strcmp(varName, array[i])){
-                printf(" ||| ");
-                printf(array[i]);
-                printf(" ||| ");
-                return 1;
-            }
+    int a = i;
+    while(a > 0) {
+        if (strstr(varName, array[a-1])){
+            printf(array[i]);
+            return 1;
         }
+        a--;
     }
     validParse = 0;
     return 0;
