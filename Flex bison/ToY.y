@@ -111,18 +111,18 @@ Return SemiC {}
 |   Return BoolContent SemiC {}
 
 Statement:
-For Condition COpenB Code CCloseB {$$=1}
+For OpenB Word EQU Number SemiC Condition SemiC Word EQU Number SemiC CloseB COpenB Code CCloseB {}
 |   IfStatement
 ;
 
 IfStatement:
-If Condition Then  COpenB Code CCloseB {$$ = 1}
+If OpenB Condition CloseB Then  COpenB Code CCloseB {$$ = 1}
 |   IfStatement Else COpenB Code CCloseB {$$ = $1}
 ;
 
 Condition:
-OpenB Word CloseB
-|   OpenB nExp CloseB
+Word {isDeclared($1, bools);}
+|   nExp
 ;
 
 Type:
@@ -133,6 +133,7 @@ Type:
 
 Number:
 IntContent {$$=$1;}
+|   Word {isDeclared($1, ints);}
 |   Number PLUS IntContent {$$ = $1 + $3;}
 |   Number SUB IntContent {$$ = $1 - $3;}
 |   Number MUL IntContent {$$ = $1 * $3;}
