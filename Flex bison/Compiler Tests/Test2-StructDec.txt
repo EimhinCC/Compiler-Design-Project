@@ -1,0 +1,25 @@
+## Valid: Yes
+
+## Description: Structs declared after they are being used by another Struct
+
+struct Manager {
+	Employee e,
+	string speciality
+}
+
+void main() {
+	Manager m;
+	m.e.p.name = "John";
+	m.e.p.age = 30;
+	m.e.employeeNo = 10;
+}
+
+struct Employee {
+	Person p,
+	int employeeNo
+}
+
+struct Person {
+	string name,
+	int age
+}

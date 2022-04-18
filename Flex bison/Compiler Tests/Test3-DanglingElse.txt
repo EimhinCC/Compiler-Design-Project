@@ -1,0 +1,9 @@
+# Valid: No
+
+# Description: Dangling else.
+
+bool test(bool x, bool y)
+{
+    if(x) then if(y) then return true;
+    else return false;
+}

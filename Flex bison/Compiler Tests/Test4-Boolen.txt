@@ -1,0 +1,10 @@
+## Valid: No
+## Description: The boolean component of the if statement is not a boolean expression
+
+void main () { 
+    int i;
+    string x;
+    if ( i = 22 ) {
+        x = "string";
+    {
+}
