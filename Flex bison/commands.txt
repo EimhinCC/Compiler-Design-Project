@@ -1,3 +1,5 @@
-flex lexer.lexer
+flex lexer.l
 bison -d -t parser.y
 gcc lex.yy.c parser.tab.c
+./a
+

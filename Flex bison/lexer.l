@@ -91,7 +91,7 @@ Word ({Alpha}{IdentifierCharacter}*)
 {Or} {printf("Or ");return(OR);}
 {Mod} {printf("Mod ");return(MOD);}
 {Not} {printf("Not ");return(NOT);}
-{OpenB} {printf("( "); return(OpenB);}
+"(" {printf("( "); return(OpenB);}
 {CloseB} {printf(") "); return(CloseB);}
 {COpenB} {printf("{ "); return(COpenB);}
 {CCloseB} {printf("} "); return(CCloseB);}
@@ -108,7 +108,7 @@ Word ({Alpha}{IdentifierCharacter}*)
 {Comma} {printf(", ");return(Comma);}
 {WhiteSp} {}
 \n {/* Do nothing */}
-. {showError();}
+. {printf("ERROR ");showError();}
 %%
 
 int yywrap(){}

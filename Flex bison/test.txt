@@ -1,0 +1,1 @@
+int bool string void 1 "hi" true = + - * / and or mod not ( ) { } printf if then else for return compare ; , testword1
