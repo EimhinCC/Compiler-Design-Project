@@ -2,7 +2,6 @@
 
 #include <string.h>
 #include <stdbool.h>
-#include "parser.tab.h"
 
 int valid = 1;
 
@@ -76,45 +75,45 @@ Word ({Alpha}{IdentifierCharacter}*)
 
 %%
 
-{Int} {printf("Int "); return(Int);}
-{Bool} {printf("Bool "); return(Bool);}
-{String} {printf("String "); return(String);}
-{Void} {printf("Void "); return(Void);}
-{Struct} {printf("Struct "); return(Struct);}
-{IntContent} {printf("IntC");yylval.num = atoi(yytext); maxNum(atoi(yytext)); return(IntContent);}
-{StringContent} {printf("StrC");yylval.word=yytext; return(StringContent);}
-{BoolContent} {printf("BoolC");yylval.word=yytext; return(BoolContent);}
-{EQU} {printf("EQU ");return(EQU);}
-{Plus} {printf("Plus ");return(PLUS);}
-{Sub} {printf("Sub ");return(SUB);}
-{Mul} {printf("Mul ");return(MUL);}
-{Div} {printf("Div ");return(DIV);}
-{And} {printf("And ");return(AND);}
-{Or} {printf("Or ");return(OR);}
-{Mod} {printf("Mod ");return(MOD);}
-{Not} {printf("Not ");return(NOT);}
-{OpenB} {printf("( "); return(OpenB);}
-{CloseB} {printf(") "); return(CloseB);}
-{COpenB} {printf("{ "); return(COpenB);}
-{CCloseB} {printf("} "); return(CCloseB);}
+{Int} {printf("Int ");}
+{Bool} {printf("Bool ");}
+{String} {printf("String ");}
+{Void} {printf("Void "); }
+{Struct} {printf("Struct "); }
+{IntContent} {printf("IntC "); }
+{StringContent} {printf("StrC "); }
+{BoolContent} {printf("BoolC ");}
+{EQU} {printf("EQU ");}
+{Plus} {printf("Plus ");}
+{Sub} {printf("Sub ");}
+{Mul} {printf("Mul ");}
+{Div} {printf("Div ");}
+{And} {printf("And ");}
+{Or} {printf("Or ");}
+{Mod} {printf("Mod ");}
+{Not} {printf("Not ");}
+"(" {printf("( ");}
+{CloseB} {printf(") ");}
+{COpenB} {printf("{ ");}
+{CCloseB} {printf("} ");}
 {Comment} {printf("Comment "); /* Skip comments */}
-{Printf} {printf("Print ");return(Printf);}
-{If} {printf("if ");return(If);}
-{Then} {printf("Then ");return(Then);}
-{Else} {printf("Else ");return(Else);}
-{For} {printf("For ");return(For);}
-{Return} {printf("Return ");return(Return);}
-{Compare} {printf("Compare ");yylval.sym=yytext[0]; return(Compare);}
-{Word} {printf("Word ");yylval.word=yytext;printf("%s ", yytext);return(Word);}
-{SemiC} {printf("; ");return(SemiC);}
-{Comma} {printf(", ");return(Comma);}
+{Printf} {printf("Print ");}
+{If} {printf("if ");}
+{Then} {printf("Then ");}
+{Else} {printf("Else ");}
+{For} {printf("For ");}
+{Return} {printf("Return ");}
+{Compare} {printf("Compare ");}
+{Word} {printf("Word ");}
+{SemiC} {printf("; ");}
+{Comma} {printf(", ");}
 {WhiteSp} {}
 \n {/* Do nothing */}
 . {printf("ERROR ");showError();}
 %%
 
 int yywrap(){}
-/*
+
 int main() {
     FILE *fp;
    char filename[50];
@@ -133,7 +132,7 @@ int main() {
 
     return 0;
 }
-*/
+
 
 
 

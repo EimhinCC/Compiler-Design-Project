@@ -8,6 +8,7 @@
 int yylex();
 FILE *yyin;
 int yyerror(char *s);
+int validParse = 0;
 
 void intAdd(char *varName);
 void strAdd(char *varName);
@@ -36,7 +37,7 @@ int l;
 }
 
 %token Int Bool String Void SemiC EQU PLUS SUB MUL DIV AND OR MOD NOT Printf If Then Else For Return 
-%token OpenB CloseB COpenB CCloseB Comma
+%token OpenB CloseB COpenB CCloseB Comma Struct
 
 %token <word> Word
 %token <num> IntContent
@@ -45,6 +46,7 @@ int l;
 %token <sym> Compare
 %type <num> ReturnType
 %type <num> Type
+%type <num> TypeList
 %type <num> FuncDef
 %type <num> FuncCall
 %type <num> Parameter
@@ -60,21 +62,22 @@ int l;
 %%
 
 input: 
-FuncDef
-|   Struct 
-|   input input
+Struct Word COpenB TypeList CCloseB {validParse=1;}
+|   FuncDef {validParse=1;}
+|   input input {validParse=1;}
 ;
 
-Struct:
-"p"
+TypeList:
+Type SemiC
+|   TypeList Type SemiC {$$=1}
 
 FuncDef:
 ReturnType Word OpenB Parameter CloseB COpenB Code CCloseB SemiC {$$ = $1}
 ;
 
 FuncCall:
-Word OpenB Parameter CloseB {$$ = 1}
-| Printf CloseB StringContent CCloseB SemiC {$$ = 4}
+Word OpenB Parameter CloseB SemiC{if(isDeclared($1, functions)){$$ = 1;} else {yyerror($1);}}
+| Printf CloseB StringContent CCloseB SemiC {$$ = 1}
 
 Parameter:
 Type {$$=1}
@@ -83,13 +86,15 @@ Type {$$=1}
 
 Code: 
 Type SemiC {}
+|   FuncCall {}
 |   Word EQU Number {if(isDeclared($1, ints)){$$ = 1;} else {yyerror($1);}}
 |   Word EQU StringContent {if(isDeclared($1, strs)){$$ = 2;} else {yyerror($1);}}
 |   Word EQU nExp {if(isDeclared($1, bools)){$$ = 3;} else {yyerror($1);}}
 |   Statement
 
 Statement:
-For {$$=1}
+For Condition COpenB Code CCloseB {$$=1}
+|   IfStatement
 
 IfStatement:
 If Condition Then  COpenB Code CCloseB {$$ = 1}
@@ -107,11 +112,11 @@ Type:
 
 Number:
 IntContent
-|   Number PLUS Number {$$ = $1 + $3;}
-|   Number SUB Number {$$ = $1 - $3;}
-|   Number MUL Number {$$ = $1 * $3;}
-|   Number DIV Number {$$ = $1 / $3;}
-|   Number MOD Number {$$ = $1 % $3;}
+|   Number PLUS IntContent {$$ = $1 + $3;}
+|   Number SUB IntContent {$$ = $1 - $3;}
+|   Number MUL IntContent {$$ = $1 * $3;}
+|   Number DIV IntContent {$$ = $1 / $3;}
+|   Number MOD IntContent {$$ = $1 % $3;}
 
 
 ReturnType:
@@ -160,6 +165,13 @@ int main() {
     yyin = fp;
 
     yyparse();
+    if(validParse) {
+    printf("\nValid input END");
+    }
+    else {
+        printf("Invalid input");
+    }
+
     
     return 0;
 }

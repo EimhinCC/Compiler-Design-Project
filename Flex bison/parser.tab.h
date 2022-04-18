@@ -64,11 +64,12 @@
      COpenB = 280,
      CCloseB = 281,
      Comma = 282,
-     Word = 283,
-     IntContent = 284,
-     StringContent = 285,
-     BoolContent = 286,
-     Compare = 287
+     Struct = 283,
+     Word = 284,
+     IntContent = 285,
+     StringContent = 286,
+     BoolContent = 287,
+     Compare = 288
    };
 #endif
 
@@ -79,7 +80,7 @@ typedef union YYSTYPE
 {
 
 /* Line 1676 of yacc.c  */
-#line 31 "parser.y"
+#line 32 "parser.y"
 
     int num;
     char sym;
@@ -89,7 +90,7 @@ typedef union YYSTYPE
 
 
 /* Line 1676 of yacc.c  */
-#line 93 "parser.tab.h"
+#line 94 "parser.tab.h"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
