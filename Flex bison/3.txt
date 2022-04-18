@@ -1,7 +1,12 @@
-void main () { 
-    int i;
-    string x;
-    if ( i = 22 ) {
-        x = "string";
-    {
+void main (int a, int b) {
+    a=3;
+    if (a < b) then {
+        return;
+    }
+    else {
+        int i;
+        i = 10;
+    }
+    printf("adwad");
+    return;
 }

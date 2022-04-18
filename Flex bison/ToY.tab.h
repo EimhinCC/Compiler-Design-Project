@@ -49,27 +49,28 @@
      SUB = 265,
      MUL = 266,
      DIV = 267,
-     AND = 268,
-     OR = 269,
-     MOD = 270,
-     NOT = 271,
-     Printf = 272,
-     If = 273,
-     Then = 274,
-     Else = 275,
-     For = 276,
-     Return = 277,
-     OpenB = 278,
-     CloseB = 279,
-     COpenB = 280,
-     CCloseB = 281,
-     Comma = 282,
-     Struct = 283,
-     Word = 284,
-     IntContent = 285,
-     StringContent = 286,
-     BoolContent = 287,
-     Compare = 288
+     DOT = 268,
+     AND = 269,
+     OR = 270,
+     MOD = 271,
+     NOT = 272,
+     Printf = 273,
+     If = 274,
+     Then = 275,
+     Else = 276,
+     For = 277,
+     Return = 278,
+     OpenB = 279,
+     CloseB = 280,
+     COpenB = 281,
+     CCloseB = 282,
+     Comma = 283,
+     Struct = 284,
+     Word = 285,
+     IntContent = 286,
+     StringContent = 287,
+     BoolContent = 288,
+     Compare = 289
    };
 #endif
 
@@ -80,7 +81,7 @@ typedef union YYSTYPE
 {
 
 /* Line 1676 of yacc.c  */
-#line 32 "ToY.y"
+#line 32 "toy.y"
 
     int num;
     char sym;
@@ -90,7 +91,7 @@ typedef union YYSTYPE
 
 
 /* Line 1676 of yacc.c  */
-#line 94 "ToY.tab.h"
+#line 95 "toy.tab.h"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */

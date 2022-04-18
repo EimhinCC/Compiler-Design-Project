@@ -1,7 +1,7 @@
 #Group 15 makefile
 
 all:
-	flex ToY.l
-	bison -d -t ToY.y
-	gcc lex.yy.c parser.tab.c
+	bison -d -t toy.y
+	flex toy.l
+	gcc lex.yy.c toy.tab.c
 	./a

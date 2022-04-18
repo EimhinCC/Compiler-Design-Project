@@ -8,7 +8,7 @@
 int yylex();
 FILE *yyin;
 int yyerror(char *s);
-int validParse = 0;
+int validParse = 1;
 
 void intAdd(char *varName);
 void strAdd(char *varName);
@@ -36,7 +36,7 @@ int l;
     bool tf;
 }
 
-%token Int Bool String Void SemiC EQU PLUS SUB MUL DIV AND OR MOD NOT Printf If Then Else For Return 
+%token Int Bool String Void SemiC EQU PLUS SUB MUL DIV DOT AND OR MOD NOT Printf If Then Else For Return 
 %token OpenB CloseB COpenB CCloseB Comma Struct
 
 %token <word> Word
@@ -55,55 +55,75 @@ int l;
 %type <tf> aExp
 %type <tf> oExp
 %type <num> Statement
+%type <num> ReturnStatem
 %type <num> IfStatement
 %type <num> Number
+
+%left PLUS SUB MUL DIV
+%right Then Else
+%nonassoc Compare
+
 
 /* rules */
 %%
 
 input: 
-Struct Word COpenB TypeList CCloseB {validParse=1;}
-|   FuncDef {validParse=1;}
-|   input input {validParse=1;}
+Struct Word COpenB TypeList CCloseB {}
+|   FuncDef {}
+|   input input {}
 ;
 
 TypeList:
 Type SemiC
 |   TypeList Type SemiC {$$=1}
+;
 
 FuncDef:
-ReturnType Word OpenB Parameter CloseB COpenB Code CCloseB {$$ = $1}
+ReturnType Word OpenB Parameter CloseB COpenB Code CCloseB {$$ = $1}   
 ;
 
 FuncCall:
-Word OpenB Parameter CloseB SemiC{if(isDeclared($1, functions)){$$ = 1;} else {yyerror($1);}}
-| Printf CloseB StringContent CCloseB SemiC {$$ = 1}
+Word OpenB Parameter CloseB SemiC{isDeclared($1, functions);$$ = 1;}
+| Printf OpenB StringContent CloseB SemiC {$$ = 1}
+;
 
 Parameter: {$$=1}
 |   Type {$$=1}
-|   Parameter Comma Type {$$=1}
+|   Parameter Comma Parameter {$$=1}
 ;
 
 Code: 
-Type SemiC {}
-|   FuncCall {}
-|   Word EQU Number SemiC{if(isDeclared($1, ints)){$$ = 1;} else {yyerror($1);}}
-|   Word EQU StringContent SemiC{if(isDeclared($1, strs)){$$ = 2;} else {yyerror($1);}}
-|   Word EQU nExp SemiC{if(isDeclared($1, bools)){$$ = 3;} else {yyerror($1);}}
+Type SemiC { $$ = $1; }
+|   FuncCall { $$ = $1; }
+|   Word EQU Number SemiC {isDeclared($1, ints); $$ = 1;}
+|   Word EQU StringContent SemiC {isDeclared($1, strs);$$ = 2;}
+|   Word EQU nExp SemiC {isDeclared($1, bools);$$ = 3;}
 |   Statement {}
+|   ReturnStatem {}
 |   Code Code {}
+;
+
+ReturnStatem:
+Return SemiC {}
+|   Return Word SemiC {}
+|   Return IntContent SemiC {}
+|   Return StringContent SemiC {}
+|   Return BoolContent SemiC {}
 
 Statement:
 For Condition COpenB Code CCloseB {$$=1}
 |   IfStatement
+;
 
 IfStatement:
 If Condition Then  COpenB Code CCloseB {$$ = 1}
 |   IfStatement Else COpenB Code CCloseB {$$ = $1}
+;
 
 Condition:
-OpenB nExp CloseB
-|   OpenB Number Compare Number CloseB
+OpenB Word CloseB
+|   OpenB nExp CloseB
+;
 
 Type:
     String Word {$$ = 1; strAdd($2);}
@@ -112,13 +132,13 @@ Type:
 ;
 
 Number:
-IntContent
+IntContent {$$=$1;}
 |   Number PLUS IntContent {$$ = $1 + $3;}
 |   Number SUB IntContent {$$ = $1 - $3;}
 |   Number MUL IntContent {$$ = $1 * $3;}
 |   Number DIV IntContent {$$ = $1 / $3;}
 |   Number MOD IntContent {$$ = $1 % $3;}
-
+;
 
 ReturnType:
 Int {$$ = 1;}
@@ -134,13 +154,22 @@ NOT aExp {$$ = !$2;}
 
 aExp:
 aExp AND BoolContent {$$= $1 && $3;}
+|   aExp AND Number Compare Number {$$ = true}
+|   aExp AND Word Compare Number {$$ = true}
+|   aExp AND Word Compare Word {$$ = true}
 |   oExp {$$ = $1;}
 |   OpenB nExp CloseB AND aExp {$$ = $2 && $5;}
 ;
 
 oExp:
 oExp OR BoolContent {$$ = 1;}
+|   oExp OR Number Compare Number {$$ = true}
+|   oExp OR Word Compare Number {$$ = true}
+|   oExp OR Word Compare Word {$$ = true}
 |   BoolContent {$$ = $1;}
+|   Number Compare Number {$$ = true}
+|   Word Compare Number {isDeclared($1, ints);$$ = true}
+|   Word Compare Word {isDeclared($1, ints); isDeclared($3, ints);$$ = true}
 |   OpenB nExp CloseB OR oExp {$$ = $2|$5;}
 |   OpenB nExp CloseB {$$ = $2;}
 ;
@@ -166,6 +195,16 @@ int main() {
     yyin = fp;
 
     yyparse();
+    for(int i = 0; i<100; i++) {
+        if (ints[i]!= NULL) {
+            printf(" ||| ");
+            printf(ints[i]);
+            printf(" ||| ");
+        }
+        else {
+            break;
+        }
+    }
     if(validParse) {
     printf("\nValid input END");
     }
@@ -204,12 +243,17 @@ void funcAdd(char * varName) {
     return;
 }
 int isDeclared(char * varName, char array[100][15]) {
+    printf(varName);
     for(int i = 0; i<100; i++) {
         if (array[i]!= NULL) {
-        if (strcmp(varName, array[i])){
-            return 1;
-        }
+            if (!strcmp(varName, array[i])){
+                printf(" ||| ");
+                printf(array[i]);
+                printf(" ||| ");
+                return 1;
+            }
         }
     }
+    validParse = 0;
     return 0;
 }

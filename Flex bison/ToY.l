@@ -2,7 +2,7 @@
 
 #include <string.h>
 #include <stdbool.h>
-#include "parser.tab.h"
+#include "toy.tab.h"
 
 int valid = 1;
 
@@ -24,9 +24,9 @@ LineTerminator \r|\n|\r\n
 Alpha [a-zA-Z]
 Digit [0-9]
 WhiteSp  [\040\ n]
-InputCharacter [^\r\n]
+InputCharacter [! #-~]
 
-Comment ("//"{InputCharacter}*{LineTerminator}?)
+Comment ("//"{InputCharacter}*{LineTerminator})|("##"{InputCharacter}*{LineTerminator})
 
 If "if"
 Then "then"
@@ -81,14 +81,15 @@ Word ({Alpha}{IdentifierCharacter}*)
 {String} {printf("String "); return(String);}
 {Void} {printf("Void "); return(Void);}
 {Struct} {printf("Struct "); return(Struct);}
-{IntContent} {printf("IntC");yylval.num = atoi(yytext); maxNum(atoi(yytext)); return(IntContent);}
-{StringContent} {printf("StrC");yylval.word=yytext; return(StringContent);}
-{BoolContent} {printf("BoolC");yylval.word=yytext; return(BoolContent);}
-{EQU} {printf("EQU ");return(EQU);}
+{IntContent} {printf("IntC ");yylval.num = atoi(yytext); maxNum(atoi(yytext)); return(IntContent);}
+{StringContent} {printf("StrC ");yylval.word=yytext; return(StringContent);}
+{BoolContent} {printf("BoolC ");yylval.word=yytext; return(BoolContent);}
+{EQU} {printf("EQU ");yylval.sym=yytext[0];return(EQU);}
 {Plus} {printf("Plus ");return(PLUS);}
 {Sub} {printf("Sub ");return(SUB);}
 {Mul} {printf("Mul ");return(MUL);}
 {Div} {printf("Div ");return(DIV);}
+{Dot} {printf("Dot ");return(DOT);}
 {And} {printf("And ");return(AND);}
 {Or} {printf("Or ");return(OR);}
 {Mod} {printf("Mod ");return(MOD);}
@@ -105,7 +106,7 @@ Word ({Alpha}{IdentifierCharacter}*)
 {For} {printf("For ");return(For);}
 {Return} {printf("Return ");return(Return);}
 {Compare} {printf("Compare ");yylval.sym=yytext[0]; return(Compare);}
-{Word} {printf("Word ");yylval.word=yytext;printf("%s ", yytext);return(Word);}
+{Word} {printf("Word:");yylval.word=yytext;printf("%s ", yylval.word);return(Word);}
 {SemiC} {printf("; ");return(SemiC);}
 {Comma} {printf(", ");return(Comma);}
 {WhiteSp} {}

@@ -1,0 +1,1531 @@
+Terminals unused in grammar
+
+   Return
+
+
+State 11 conflicts: 5 shift/reduce
+State 32 conflicts: 1 shift/reduce
+State 49 conflicts: 7 shift/reduce
+State 92 conflicts: 2 shift/reduce
+State 118 conflicts: 1 shift/reduce
+State 120 conflicts: 1 shift/reduce
+State 128 conflicts: 1 shift/reduce
+
+
+Grammar
+
+    0 $accept: input $end
+
+    1 input: Struct Word COpenB TypeList CCloseB
+    2      | FuncDef
+    3      | input input
+
+    4 TypeList: Type SemiC
+    5         | TypeList Type SemiC
+
+    6 FuncDef: ReturnType Word OpenB Parameter CloseB COpenB Code CCloseB
+
+    7 FuncCall: Word OpenB Parameter CloseB SemiC
+    8         | Printf CloseB StringContent CCloseB SemiC
+
+    9 Parameter: /* empty */
+   10          | Type
+   11          | Parameter Comma Parameter
+
+   12 Code: Type SemiC
+   13     | FuncCall
+   14     | Word EQU Number SemiC
+   15     | Word EQU StringContent SemiC
+   16     | Word EQU nExp SemiC
+   17     | Statement
+   18     | Code Code
+
+   19 Statement: For Condition COpenB Code CCloseB
+   20          | IfStatement
+
+   21 IfStatement: If Condition Then COpenB Code CCloseB
+   22            | IfStatement Else COpenB Code CCloseB
+
+   23 Condition: OpenB Word CloseB
+   24          | OpenB nExp CloseB
+
+   25 Type: String Word
+   26     | Int Word
+   27     | Bool Word
+
+   28 Number: IntContent
+   29       | Number PLUS IntContent
+   30       | Number SUB IntContent
+   31       | Number MUL IntContent
+   32       | Number DIV IntContent
+   33       | Number MOD IntContent
+
+   34 ReturnType: Int
+   35           | Bool
+   36           | String
+   37           | Void
+
+   38 nExp: NOT aExp
+   39     | aExp
+
+   40 aExp: aExp AND BoolContent
+   41     | aExp AND Number Compare Number
+   42     | aExp AND Word Compare Number
+   43     | aExp AND Word Compare Word
+   44     | oExp
+   45     | OpenB nExp CloseB AND aExp
+
+   46 oExp: oExp OR BoolContent
+   47     | oExp OR Number Compare Number
+   48     | oExp OR Word Compare Number
+   49     | oExp OR Word Compare Word
+   50     | BoolContent
+   51     | Number Compare Number
+   52     | Word Compare Number
+   53     | Word Compare Word
+   54     | OpenB nExp CloseB OR oExp
+   55     | OpenB nExp CloseB
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+error (256)
+Int (258) 26 34
+Bool (259) 27 35
+String (260) 25 36
+Void (261) 37
+SemiC (262) 4 5 7 8 12 14 15 16
+EQU (263) 14 15 16
+PLUS (264) 29
+SUB (265) 30
+MUL (266) 31
+DIV (267) 32
+AND (268) 40 41 42 43 45
+OR (269) 46 47 48 49 54
+MOD (270) 33
+NOT (271) 38
+Printf (272) 8
+If (273) 21
+Then (274) 21
+Else (275) 22
+For (276) 19
+Return (277)
+OpenB (278) 6 7 23 24 45 54 55
+CloseB (279) 6 7 8 23 24 45 54 55
+COpenB (280) 1 6 19 21 22
+CCloseB (281) 1 6 8 19 21 22
+Comma (282) 11
+Struct (283) 1
+Word (284) 1 6 7 14 15 16 23 25 26 27 42 43 48 49 52 53
+IntContent (285) 28 29 30 31 32 33
+StringContent (286) 8 15
+BoolContent (287) 40 46 50
+Compare (288) 41 42 43 47 48 49 51 52 53
+
+
+Nonterminals, with rules where they appear
+
+$accept (34)
+    on left: 0
+input (35)
+    on left: 1 2 3, on right: 0 3
+TypeList (36)
+    on left: 4 5, on right: 1 5
+FuncDef (37)
+    on left: 6, on right: 2
+FuncCall (38)
+    on left: 7 8, on right: 13
+Parameter (39)
+    on left: 9 10 11, on right: 6 7 11
+Code (40)
+    on left: 12 13 14 15 16 17 18, on right: 6 18 19 21 22
+Statement (41)
+    on left: 19 20, on right: 17
+IfStatement (42)
+    on left: 21 22, on right: 20 22
+Condition (43)
+    on left: 23 24, on right: 19 21
+Type (44)
+    on left: 25 26 27, on right: 4 5 10 12
+Number (45)
+    on left: 28 29 30 31 32 33, on right: 14 29 30 31 32 33 41 42 47
+    48 51 52
+ReturnType (46)
+    on left: 34 35 36 37, on right: 6
+nExp (47)
+    on left: 38 39, on right: 16 24 45 54 55
+aExp (48)
+    on left: 40 41 42 43 44 45, on right: 38 39 40 41 42 43 45
+oExp (49)
+    on left: 46 47 48 49 50 51 52 53 54 55, on right: 44 46 47 48 49
+    54
+
+
+state 0
+
+    0 $accept: . input $end
+
+    Int     shift, and go to state 1
+    Bool    shift, and go to state 2
+    String  shift, and go to state 3
+    Void    shift, and go to state 4
+    Struct  shift, and go to state 5
+
+    input       go to state 6
+    FuncDef     go to state 7
+    ReturnType  go to state 8
+
+
+state 1
+
+   34 ReturnType: Int .
+
+    $default  reduce using rule 34 (ReturnType)
+
+
+state 2
+
+   35 ReturnType: Bool .
+
+    $default  reduce using rule 35 (ReturnType)
+
+
+state 3
+
+   36 ReturnType: String .
+
+    $default  reduce using rule 36 (ReturnType)
+
+
+state 4
+
+   37 ReturnType: Void .
+
+    $default  reduce using rule 37 (ReturnType)
+
+
+state 5
+
+    1 input: Struct . Word COpenB TypeList CCloseB
+
+    Word  shift, and go to state 9
+
+
+state 6
+
+    0 $accept: input . $end
+    3 input: input . input
+
+    $end    shift, and go to state 10
+    Int     shift, and go to state 1
+    Bool    shift, and go to state 2
+    String  shift, and go to state 3
+    Void    shift, and go to state 4
+    Struct  shift, and go to state 5
+
+    input       go to state 11
+    FuncDef     go to state 7
+    ReturnType  go to state 8
+
+
+state 7
+
+    2 input: FuncDef .
+
+    $default  reduce using rule 2 (input)
+
+
+state 8
+
+    6 FuncDef: ReturnType . Word OpenB Parameter CloseB COpenB Code CCloseB
+
+    Word  shift, and go to state 12
+
+
+state 9
+
+    1 input: Struct Word . COpenB TypeList CCloseB
+
+    COpenB  shift, and go to state 13
+
+
+state 10
+
+    0 $accept: input $end .
+
+    $default  accept
+
+
+state 11
+
+    3 input: input . input
+    3      | input input .
+
+    Int     shift, and go to state 1
+    Bool    shift, and go to state 2
+    String  shift, and go to state 3
+    Void    shift, and go to state 4
+    Struct  shift, and go to state 5
+
+    Int       [reduce using rule 3 (input)]
+    Bool      [reduce using rule 3 (input)]
+    String    [reduce using rule 3 (input)]
+    Void      [reduce using rule 3 (input)]
+    Struct    [reduce using rule 3 (input)]
+    $default  reduce using rule 3 (input)
+
+    input       go to state 11
+    FuncDef     go to state 7
+    ReturnType  go to state 8
+
+
+state 12
+
+    6 FuncDef: ReturnType Word . OpenB Parameter CloseB COpenB Code CCloseB
+
+    OpenB  shift, and go to state 14
+
+
+state 13
+
+    1 input: Struct Word COpenB . TypeList CCloseB
+
+    Int     shift, and go to state 15
+    Bool    shift, and go to state 16
+    String  shift, and go to state 17
+
+    TypeList  go to state 18
+    Type      go to state 19
+
+
+state 14
+
+    6 FuncDef: ReturnType Word OpenB . Parameter CloseB COpenB Code CCloseB
+
+    Int     shift, and go to state 15
+    Bool    shift, and go to state 16
+    String  shift, and go to state 17
+
+    $default  reduce using rule 9 (Parameter)
+
+    Parameter  go to state 20
+    Type       go to state 21
+
+
+state 15
+
+   26 Type: Int . Word
+
+    Word  shift, and go to state 22
+
+
+state 16
+
+   27 Type: Bool . Word
+
+    Word  shift, and go to state 23
+
+
+state 17
+
+   25 Type: String . Word
+
+    Word  shift, and go to state 24
+
+
+state 18
+
+    1 input: Struct Word COpenB TypeList . CCloseB
+    5 TypeList: TypeList . Type SemiC
+
+    Int      shift, and go to state 15
+    Bool     shift, and go to state 16
+    String   shift, and go to state 17
+    CCloseB  shift, and go to state 25
+
+    Type  go to state 26
+
+
+state 19
+
+    4 TypeList: Type . SemiC
+
+    SemiC  shift, and go to state 27
+
+
+state 20
+
+    6 FuncDef: ReturnType Word OpenB Parameter . CloseB COpenB Code CCloseB
+   11 Parameter: Parameter . Comma Parameter
+
+    CloseB  shift, and go to state 28
+    Comma   shift, and go to state 29
+
+
+state 21
+
+   10 Parameter: Type .
+
+    $default  reduce using rule 10 (Parameter)
+
+
+state 22
+
+   26 Type: Int Word .
+
+    $default  reduce using rule 26 (Type)
+
+
+state 23
+
+   27 Type: Bool Word .
+
+    $default  reduce using rule 27 (Type)
+
+
+state 24
+
+   25 Type: String Word .
+
+    $default  reduce using rule 25 (Type)
+
+
+state 25
+
+    1 input: Struct Word COpenB TypeList CCloseB .
+
+    $default  reduce using rule 1 (input)
+
+
+state 26
+
+    5 TypeList: TypeList Type . SemiC
+
+    SemiC  shift, and go to state 30
+
+
+state 27
+
+    4 TypeList: Type SemiC .
+
+    $default  reduce using rule 4 (TypeList)
+
+
+state 28
+
+    6 FuncDef: ReturnType Word OpenB Parameter CloseB . COpenB Code CCloseB
+
+    COpenB  shift, and go to state 31
+
+
+state 29
+
+   11 Parameter: Parameter Comma . Parameter
+
+    Int     shift, and go to state 15
+    Bool    shift, and go to state 16
+    String  shift, and go to state 17
+
+    $default  reduce using rule 9 (Parameter)
+
+    Parameter  go to state 32
+    Type       go to state 21
+
+
+state 30
+
+    5 TypeList: TypeList Type SemiC .
+
+    $default  reduce using rule 5 (TypeList)
+
+
+state 31
+
+    6 FuncDef: ReturnType Word OpenB Parameter CloseB COpenB . Code CCloseB
+
+    Int     shift, and go to state 15
+    Bool    shift, and go to state 16
+    String  shift, and go to state 17
+    Printf  shift, and go to state 33
+    If      shift, and go to state 34
+    For     shift, and go to state 35
+    Word    shift, and go to state 36
+
+    FuncCall     go to state 37
+    Code         go to state 38
+    Statement    go to state 39
+    IfStatement  go to state 40
+    Type         go to state 41
+
+
+state 32
+
+   11 Parameter: Parameter . Comma Parameter
+   11          | Parameter Comma Parameter .
+
+    Comma  shift, and go to state 29
+
+    Comma     [reduce using rule 11 (Parameter)]
+    $default  reduce using rule 11 (Parameter)
+
+
+state 33
+
+    8 FuncCall: Printf . CloseB StringContent CCloseB SemiC
+
+    CloseB  shift, and go to state 42
+
+
+state 34
+
+   21 IfStatement: If . Condition Then COpenB Code CCloseB
+
+    OpenB  shift, and go to state 43
+
+    Condition  go to state 44
+
+
+state 35
+
+   19 Statement: For . Condition COpenB Code CCloseB
+
+    OpenB  shift, and go to state 43
+
+    Condition  go to state 45
+
+
+state 36
+
+    7 FuncCall: Word . OpenB Parameter CloseB SemiC
+   14 Code: Word . EQU Number SemiC
+   15     | Word . EQU StringContent SemiC
+   16     | Word . EQU nExp SemiC
+
+    EQU    shift, and go to state 46
+    OpenB  shift, and go to state 47
+
+
+state 37
+
+   13 Code: FuncCall .
+
+    $default  reduce using rule 13 (Code)
+
+
+state 38
+
+    6 FuncDef: ReturnType Word OpenB Parameter CloseB COpenB Code . CCloseB
+   18 Code: Code . Code
+
+    Int      shift, and go to state 15
+    Bool     shift, and go to state 16
+    String   shift, and go to state 17
+    Printf   shift, and go to state 33
+    If       shift, and go to state 34
+    For      shift, and go to state 35
+    CCloseB  shift, and go to state 48
+    Word     shift, and go to state 36
+
+    FuncCall     go to state 37
+    Code         go to state 49
+    Statement    go to state 39
+    IfStatement  go to state 40
+    Type         go to state 41
+
+
+state 39
+
+   17 Code: Statement .
+
+    $default  reduce using rule 17 (Code)
+
+
+state 40
+
+   20 Statement: IfStatement .
+   22 IfStatement: IfStatement . Else COpenB Code CCloseB
+
+    Else  shift, and go to state 50
+
+    $default  reduce using rule 20 (Statement)
+
+
+state 41
+
+   12 Code: Type . SemiC
+
+    SemiC  shift, and go to state 51
+
+
+state 42
+
+    8 FuncCall: Printf CloseB . StringContent CCloseB SemiC
+
+    StringContent  shift, and go to state 52
+
+
+state 43
+
+   23 Condition: OpenB . Word CloseB
+   24          | OpenB . nExp CloseB
+
+    NOT          shift, and go to state 53
+    OpenB        shift, and go to state 54
+    Word         shift, and go to state 55
+    IntContent   shift, and go to state 56
+    BoolContent  shift, and go to state 57
+
+    Number  go to state 58
+    nExp    go to state 59
+    aExp    go to state 60
+    oExp    go to state 61
+
+
+state 44
+
+   21 IfStatement: If Condition . Then COpenB Code CCloseB
+
+    Then  shift, and go to state 62
+
+
+state 45
+
+   19 Statement: For Condition . COpenB Code CCloseB
+
+    COpenB  shift, and go to state 63
+
+
+state 46
+
+   14 Code: Word EQU . Number SemiC
+   15     | Word EQU . StringContent SemiC
+   16     | Word EQU . nExp SemiC
+
+    NOT            shift, and go to state 53
+    OpenB          shift, and go to state 54
+    Word           shift, and go to state 64
+    IntContent     shift, and go to state 56
+    StringContent  shift, and go to state 65
+    BoolContent    shift, and go to state 57
+
+    Number  go to state 66
+    nExp    go to state 67
+    aExp    go to state 60
+    oExp    go to state 61
+
+
+state 47
+
+    7 FuncCall: Word OpenB . Parameter CloseB SemiC
+
+    Int     shift, and go to state 15
+    Bool    shift, and go to state 16
+    String  shift, and go to state 17
+
+    $default  reduce using rule 9 (Parameter)
+
+    Parameter  go to state 68
+    Type       go to state 21
+
+
+state 48
+
+    6 FuncDef: ReturnType Word OpenB Parameter CloseB COpenB Code CCloseB .
+
+    $default  reduce using rule 6 (FuncDef)
+
+
+state 49
+
+   18 Code: Code . Code
+   18     | Code Code .
+
+    Int     shift, and go to state 15
+    Bool    shift, and go to state 16
+    String  shift, and go to state 17
+    Printf  shift, and go to state 33
+    If      shift, and go to state 34
+    For     shift, and go to state 35
+    Word    shift, and go to state 36
+
+    Int       [reduce using rule 18 (Code)]
+    Bool      [reduce using rule 18 (Code)]
+    String    [reduce using rule 18 (Code)]
+    Printf    [reduce using rule 18 (Code)]
+    If        [reduce using rule 18 (Code)]
+    For       [reduce using rule 18 (Code)]
+    Word      [reduce using rule 18 (Code)]
+    $default  reduce using rule 18 (Code)
+
+    FuncCall     go to state 37
+    Code         go to state 49
+    Statement    go to state 39
+    IfStatement  go to state 40
+    Type         go to state 41
+
+
+state 50
+
+   22 IfStatement: IfStatement Else . COpenB Code CCloseB
+
+    COpenB  shift, and go to state 69
+
+
+state 51
+
+   12 Code: Type SemiC .
+
+    $default  reduce using rule 12 (Code)
+
+
+state 52
+
+    8 FuncCall: Printf CloseB StringContent . CCloseB SemiC
+
+    CCloseB  shift, and go to state 70
+
+
+state 53
+
+   38 nExp: NOT . aExp
+
+    OpenB        shift, and go to state 54
+    Word         shift, and go to state 64
+    IntContent   shift, and go to state 56
+    BoolContent  shift, and go to state 57
+
+    Number  go to state 58
+    aExp    go to state 71
+    oExp    go to state 61
+
+
+state 54
+
+   45 aExp: OpenB . nExp CloseB AND aExp
+   54 oExp: OpenB . nExp CloseB OR oExp
+   55     | OpenB . nExp CloseB
+
+    NOT          shift, and go to state 53
+    OpenB        shift, and go to state 54
+    Word         shift, and go to state 64
+    IntContent   shift, and go to state 56
+    BoolContent  shift, and go to state 57
+
+    Number  go to state 58
+    nExp    go to state 72
+    aExp    go to state 60
+    oExp    go to state 61
+
+
+state 55
+
+   23 Condition: OpenB Word . CloseB
+   52 oExp: Word . Compare Number
+   53     | Word . Compare Word
+
+    CloseB   shift, and go to state 73
+    Compare  shift, and go to state 74
+
+
+state 56
+
+   28 Number: IntContent .
+
+    $default  reduce using rule 28 (Number)
+
+
+state 57
+
+   50 oExp: BoolContent .
+
+    $default  reduce using rule 50 (oExp)
+
+
+state 58
+
+   29 Number: Number . PLUS IntContent
+   30       | Number . SUB IntContent
+   31       | Number . MUL IntContent
+   32       | Number . DIV IntContent
+   33       | Number . MOD IntContent
+   51 oExp: Number . Compare Number
+
+    PLUS     shift, and go to state 75
+    SUB      shift, and go to state 76
+    MUL      shift, and go to state 77
+    DIV      shift, and go to state 78
+    MOD      shift, and go to state 79
+    Compare  shift, and go to state 80
+
+
+state 59
+
+   24 Condition: OpenB nExp . CloseB
+
+    CloseB  shift, and go to state 81
+
+
+state 60
+
+   39 nExp: aExp .
+   40 aExp: aExp . AND BoolContent
+   41     | aExp . AND Number Compare Number
+   42     | aExp . AND Word Compare Number
+   43     | aExp . AND Word Compare Word
+
+    AND  shift, and go to state 82
+
+    $default  reduce using rule 39 (nExp)
+
+
+state 61
+
+   44 aExp: oExp .
+   46 oExp: oExp . OR BoolContent
+   47     | oExp . OR Number Compare Number
+   48     | oExp . OR Word Compare Number
+   49     | oExp . OR Word Compare Word
+
+    OR  shift, and go to state 83
+
+    $default  reduce using rule 44 (aExp)
+
+
+state 62
+
+   21 IfStatement: If Condition Then . COpenB Code CCloseB
+
+    COpenB  shift, and go to state 84
+
+
+state 63
+
+   19 Statement: For Condition COpenB . Code CCloseB
+
+    Int     shift, and go to state 15
+    Bool    shift, and go to state 16
+    String  shift, and go to state 17
+    Printf  shift, and go to state 33
+    If      shift, and go to state 34
+    For     shift, and go to state 35
+    Word    shift, and go to state 36
+
+    FuncCall     go to state 37
+    Code         go to state 85
+    Statement    go to state 39
+    IfStatement  go to state 40
+    Type         go to state 41
+
+
+state 64
+
+   52 oExp: Word . Compare Number
+   53     | Word . Compare Word
+
+    Compare  shift, and go to state 74
+
+
+state 65
+
+   15 Code: Word EQU StringContent . SemiC
+
+    SemiC  shift, and go to state 86
+
+
+state 66
+
+   14 Code: Word EQU Number . SemiC
+   29 Number: Number . PLUS IntContent
+   30       | Number . SUB IntContent
+   31       | Number . MUL IntContent
+   32       | Number . DIV IntContent
+   33       | Number . MOD IntContent
+   51 oExp: Number . Compare Number
+
+    SemiC    shift, and go to state 87
+    PLUS     shift, and go to state 75
+    SUB      shift, and go to state 76
+    MUL      shift, and go to state 77
+    DIV      shift, and go to state 78
+    MOD      shift, and go to state 79
+    Compare  shift, and go to state 80
+
+
+state 67
+
+   16 Code: Word EQU nExp . SemiC
+
+    SemiC  shift, and go to state 88
+
+
+state 68
+
+    7 FuncCall: Word OpenB Parameter . CloseB SemiC
+   11 Parameter: Parameter . Comma Parameter
+
+    CloseB  shift, and go to state 89
+    Comma   shift, and go to state 29
+
+
+state 69
+
+   22 IfStatement: IfStatement Else COpenB . Code CCloseB
+
+    Int     shift, and go to state 15
+    Bool    shift, and go to state 16
+    String  shift, and go to state 17
+    Printf  shift, and go to state 33
+    If      shift, and go to state 34
+    For     shift, and go to state 35
+    Word    shift, and go to state 36
+
+    FuncCall     go to state 37
+    Code         go to state 90
+    Statement    go to state 39
+    IfStatement  go to state 40
+    Type         go to state 41
+
+
+state 70
+
+    8 FuncCall: Printf CloseB StringContent CCloseB . SemiC
+
+    SemiC  shift, and go to state 91
+
+
+state 71
+
+   38 nExp: NOT aExp .
+   40 aExp: aExp . AND BoolContent
+   41     | aExp . AND Number Compare Number
+   42     | aExp . AND Word Compare Number
+   43     | aExp . AND Word Compare Word
+
+    AND  shift, and go to state 82
+
+    $default  reduce using rule 38 (nExp)
+
+
+state 72
+
+   45 aExp: OpenB nExp . CloseB AND aExp
+   54 oExp: OpenB nExp . CloseB OR oExp
+   55     | OpenB nExp . CloseB
+
+    CloseB  shift, and go to state 92
+
+
+state 73
+
+   23 Condition: OpenB Word CloseB .
+
+    $default  reduce using rule 23 (Condition)
+
+
+state 74
+
+   52 oExp: Word Compare . Number
+   53     | Word Compare . Word
+
+    Word        shift, and go to state 93
+    IntContent  shift, and go to state 56
+
+    Number  go to state 94
+
+
+state 75
+
+   29 Number: Number PLUS . IntContent
+
+    IntContent  shift, and go to state 95
+
+
+state 76
+
+   30 Number: Number SUB . IntContent
+
+    IntContent  shift, and go to state 96
+
+
+state 77
+
+   31 Number: Number MUL . IntContent
+
+    IntContent  shift, and go to state 97
+
+
+state 78
+
+   32 Number: Number DIV . IntContent
+
+    IntContent  shift, and go to state 98
+
+
+state 79
+
+   33 Number: Number MOD . IntContent
+
+    IntContent  shift, and go to state 99
+
+
+state 80
+
+   51 oExp: Number Compare . Number
+
+    IntContent  shift, and go to state 56
+
+    Number  go to state 100
+
+
+state 81
+
+   24 Condition: OpenB nExp CloseB .
+
+    $default  reduce using rule 24 (Condition)
+
+
+state 82
+
+   40 aExp: aExp AND . BoolContent
+   41     | aExp AND . Number Compare Number
+   42     | aExp AND . Word Compare Number
+   43     | aExp AND . Word Compare Word
+
+    Word         shift, and go to state 101
+    IntContent   shift, and go to state 56
+    BoolContent  shift, and go to state 102
+
+    Number  go to state 103
+
+
+state 83
+
+   46 oExp: oExp OR . BoolContent
+   47     | oExp OR . Number Compare Number
+   48     | oExp OR . Word Compare Number
+   49     | oExp OR . Word Compare Word
+
+    Word         shift, and go to state 104
+    IntContent   shift, and go to state 56
+    BoolContent  shift, and go to state 105
+
+    Number  go to state 106
+
+
+state 84
+
+   21 IfStatement: If Condition Then COpenB . Code CCloseB
+
+    Int     shift, and go to state 15
+    Bool    shift, and go to state 16
+    String  shift, and go to state 17
+    Printf  shift, and go to state 33
+    If      shift, and go to state 34
+    For     shift, and go to state 35
+    Word    shift, and go to state 36
+
+    FuncCall     go to state 37
+    Code         go to state 107
+    Statement    go to state 39
+    IfStatement  go to state 40
+    Type         go to state 41
+
+
+state 85
+
+   18 Code: Code . Code
+   19 Statement: For Condition COpenB Code . CCloseB
+
+    Int      shift, and go to state 15
+    Bool     shift, and go to state 16
+    String   shift, and go to state 17
+    Printf   shift, and go to state 33
+    If       shift, and go to state 34
+    For      shift, and go to state 35
+    CCloseB  shift, and go to state 108
+    Word     shift, and go to state 36
+
+    FuncCall     go to state 37
+    Code         go to state 49
+    Statement    go to state 39
+    IfStatement  go to state 40
+    Type         go to state 41
+
+
+state 86
+
+   15 Code: Word EQU StringContent SemiC .
+
+    $default  reduce using rule 15 (Code)
+
+
+state 87
+
+   14 Code: Word EQU Number SemiC .
+
+    $default  reduce using rule 14 (Code)
+
+
+state 88
+
+   16 Code: Word EQU nExp SemiC .
+
+    $default  reduce using rule 16 (Code)
+
+
+state 89
+
+    7 FuncCall: Word OpenB Parameter CloseB . SemiC
+
+    SemiC  shift, and go to state 109
+
+
+state 90
+
+   18 Code: Code . Code
+   22 IfStatement: IfStatement Else COpenB Code . CCloseB
+
+    Int      shift, and go to state 15
+    Bool     shift, and go to state 16
+    String   shift, and go to state 17
+    Printf   shift, and go to state 33
+    If       shift, and go to state 34
+    For      shift, and go to state 35
+    CCloseB  shift, and go to state 110
+    Word     shift, and go to state 36
+
+    FuncCall     go to state 37
+    Code         go to state 49
+    Statement    go to state 39
+    IfStatement  go to state 40
+    Type         go to state 41
+
+
+state 91
+
+    8 FuncCall: Printf CloseB StringContent CCloseB SemiC .
+
+    $default  reduce using rule 8 (FuncCall)
+
+
+state 92
+
+   45 aExp: OpenB nExp CloseB . AND aExp
+   54 oExp: OpenB nExp CloseB . OR oExp
+   55     | OpenB nExp CloseB .
+
+    AND  shift, and go to state 111
+    OR   shift, and go to state 112
+
+    AND       [reduce using rule 55 (oExp)]
+    OR        [reduce using rule 55 (oExp)]
+    $default  reduce using rule 55 (oExp)
+
+
+state 93
+
+   53 oExp: Word Compare Word .
+
+    $default  reduce using rule 53 (oExp)
+
+
+state 94
+
+   29 Number: Number . PLUS IntContent
+   30       | Number . SUB IntContent
+   31       | Number . MUL IntContent
+   32       | Number . DIV IntContent
+   33       | Number . MOD IntContent
+   52 oExp: Word Compare Number .
+
+    PLUS  shift, and go to state 75
+    SUB   shift, and go to state 76
+    MUL   shift, and go to state 77
+    DIV   shift, and go to state 78
+    MOD   shift, and go to state 79
+
+    $default  reduce using rule 52 (oExp)
+
+
+state 95
+
+   29 Number: Number PLUS IntContent .
+
+    $default  reduce using rule 29 (Number)
+
+
+state 96
+
+   30 Number: Number SUB IntContent .
+
+    $default  reduce using rule 30 (Number)
+
+
+state 97
+
+   31 Number: Number MUL IntContent .
+
+    $default  reduce using rule 31 (Number)
+
+
+state 98
+
+   32 Number: Number DIV IntContent .
+
+    $default  reduce using rule 32 (Number)
+
+
+state 99
+
+   33 Number: Number MOD IntContent .
+
+    $default  reduce using rule 33 (Number)
+
+
+state 100
+
+   29 Number: Number . PLUS IntContent
+   30       | Number . SUB IntContent
+   31       | Number . MUL IntContent
+   32       | Number . DIV IntContent
+   33       | Number . MOD IntContent
+   51 oExp: Number Compare Number .
+
+    PLUS  shift, and go to state 75
+    SUB   shift, and go to state 76
+    MUL   shift, and go to state 77
+    DIV   shift, and go to state 78
+    MOD   shift, and go to state 79
+
+    $default  reduce using rule 51 (oExp)
+
+
+state 101
+
+   42 aExp: aExp AND Word . Compare Number
+   43     | aExp AND Word . Compare Word
+
+    Compare  shift, and go to state 113
+
+
+state 102
+
+   40 aExp: aExp AND BoolContent .
+
+    $default  reduce using rule 40 (aExp)
+
+
+state 103
+
+   29 Number: Number . PLUS IntContent
+   30       | Number . SUB IntContent
+   31       | Number . MUL IntContent
+   32       | Number . DIV IntContent
+   33       | Number . MOD IntContent
+   41 aExp: aExp AND Number . Compare Number
+
+    PLUS     shift, and go to state 75
+    SUB      shift, and go to state 76
+    MUL      shift, and go to state 77
+    DIV      shift, and go to state 78
+    MOD      shift, and go to state 79
+    Compare  shift, and go to state 114
+
+
+state 104
+
+   48 oExp: oExp OR Word . Compare Number
+   49     | oExp OR Word . Compare Word
+
+    Compare  shift, and go to state 115
+
+
+state 105
+
+   46 oExp: oExp OR BoolContent .
+
+    $default  reduce using rule 46 (oExp)
+
+
+state 106
+
+   29 Number: Number . PLUS IntContent
+   30       | Number . SUB IntContent
+   31       | Number . MUL IntContent
+   32       | Number . DIV IntContent
+   33       | Number . MOD IntContent
+   47 oExp: oExp OR Number . Compare Number
+
+    PLUS     shift, and go to state 75
+    SUB      shift, and go to state 76
+    MUL      shift, and go to state 77
+    DIV      shift, and go to state 78
+    MOD      shift, and go to state 79
+    Compare  shift, and go to state 116
+
+
+state 107
+
+   18 Code: Code . Code
+   21 IfStatement: If Condition Then COpenB Code . CCloseB
+
+    Int      shift, and go to state 15
+    Bool     shift, and go to state 16
+    String   shift, and go to state 17
+    Printf   shift, and go to state 33
+    If       shift, and go to state 34
+    For      shift, and go to state 35
+    CCloseB  shift, and go to state 117
+    Word     shift, and go to state 36
+
+    FuncCall     go to state 37
+    Code         go to state 49
+    Statement    go to state 39
+    IfStatement  go to state 40
+    Type         go to state 41
+
+
+state 108
+
+   19 Statement: For Condition COpenB Code CCloseB .
+
+    $default  reduce using rule 19 (Statement)
+
+
+state 109
+
+    7 FuncCall: Word OpenB Parameter CloseB SemiC .
+
+    $default  reduce using rule 7 (FuncCall)
+
+
+state 110
+
+   22 IfStatement: IfStatement Else COpenB Code CCloseB .
+
+    $default  reduce using rule 22 (IfStatement)
+
+
+state 111
+
+   45 aExp: OpenB nExp CloseB AND . aExp
+
+    OpenB        shift, and go to state 54
+    Word         shift, and go to state 64
+    IntContent   shift, and go to state 56
+    BoolContent  shift, and go to state 57
+
+    Number  go to state 58
+    aExp    go to state 118
+    oExp    go to state 61
+
+
+state 112
+
+   54 oExp: OpenB nExp CloseB OR . oExp
+
+    OpenB        shift, and go to state 119
+    Word         shift, and go to state 64
+    IntContent   shift, and go to state 56
+    BoolContent  shift, and go to state 57
+
+    Number  go to state 58
+    oExp    go to state 120
+
+
+state 113
+
+   42 aExp: aExp AND Word Compare . Number
+   43     | aExp AND Word Compare . Word
+
+    Word        shift, and go to state 121
+    IntContent  shift, and go to state 56
+
+    Number  go to state 122
+
+
+state 114
+
+   41 aExp: aExp AND Number Compare . Number
+
+    IntContent  shift, and go to state 56
+
+    Number  go to state 123
+
+
+state 115
+
+   48 oExp: oExp OR Word Compare . Number
+   49     | oExp OR Word Compare . Word
+
+    Word        shift, and go to state 124
+    IntContent  shift, and go to state 56
+
+    Number  go to state 125
+
+
+state 116
+
+   47 oExp: oExp OR Number Compare . Number
+
+    IntContent  shift, and go to state 56
+
+    Number  go to state 126
+
+
+state 117
+
+   21 IfStatement: If Condition Then COpenB Code CCloseB .
+
+    $default  reduce using rule 21 (IfStatement)
+
+
+state 118
+
+   40 aExp: aExp . AND BoolContent
+   41     | aExp . AND Number Compare Number
+   42     | aExp . AND Word Compare Number
+   43     | aExp . AND Word Compare Word
+   45     | OpenB nExp CloseB AND aExp .
+
+    AND  shift, and go to state 82
+
+    AND       [reduce using rule 45 (aExp)]
+    $default  reduce using rule 45 (aExp)
+
+
+state 119
+
+   54 oExp: OpenB . nExp CloseB OR oExp
+   55     | OpenB . nExp CloseB
+
+    NOT          shift, and go to state 53
+    OpenB        shift, and go to state 54
+    Word         shift, and go to state 64
+    IntContent   shift, and go to state 56
+    BoolContent  shift, and go to state 57
+
+    Number  go to state 58
+    nExp    go to state 127
+    aExp    go to state 60
+    oExp    go to state 61
+
+
+state 120
+
+   46 oExp: oExp . OR BoolContent
+   47     | oExp . OR Number Compare Number
+   48     | oExp . OR Word Compare Number
+   49     | oExp . OR Word Compare Word
+   54     | OpenB nExp CloseB OR oExp .
+
+    OR  shift, and go to state 83
+
+    OR        [reduce using rule 54 (oExp)]
+    $default  reduce using rule 54 (oExp)
+
+
+state 121
+
+   43 aExp: aExp AND Word Compare Word .
+
+    $default  reduce using rule 43 (aExp)
+
+
+state 122
+
+   29 Number: Number . PLUS IntContent
+   30       | Number . SUB IntContent
+   31       | Number . MUL IntContent
+   32       | Number . DIV IntContent
+   33       | Number . MOD IntContent
+   42 aExp: aExp AND Word Compare Number .
+
+    PLUS  shift, and go to state 75
+    SUB   shift, and go to state 76
+    MUL   shift, and go to state 77
+    DIV   shift, and go to state 78
+    MOD   shift, and go to state 79
+
+    $default  reduce using rule 42 (aExp)
+
+
+state 123
+
+   29 Number: Number . PLUS IntContent
+   30       | Number . SUB IntContent
+   31       | Number . MUL IntContent
+   32       | Number . DIV IntContent
+   33       | Number . MOD IntContent
+   41 aExp: aExp AND Number Compare Number .
+
+    PLUS  shift, and go to state 75
+    SUB   shift, and go to state 76
+    MUL   shift, and go to state 77
+    DIV   shift, and go to state 78
+    MOD   shift, and go to state 79
+
+    $default  reduce using rule 41 (aExp)
+
+
+state 124
+
+   49 oExp: oExp OR Word Compare Word .
+
+    $default  reduce using rule 49 (oExp)
+
+
+state 125
+
+   29 Number: Number . PLUS IntContent
+   30       | Number . SUB IntContent
+   31       | Number . MUL IntContent
+   32       | Number . DIV IntContent
+   33       | Number . MOD IntContent
+   48 oExp: oExp OR Word Compare Number .
+
+    PLUS  shift, and go to state 75
+    SUB   shift, and go to state 76
+    MUL   shift, and go to state 77
+    DIV   shift, and go to state 78
+    MOD   shift, and go to state 79
+
+    $default  reduce using rule 48 (oExp)
+
+
+state 126
+
+   29 Number: Number . PLUS IntContent
+   30       | Number . SUB IntContent
+   31       | Number . MUL IntContent
+   32       | Number . DIV IntContent
+   33       | Number . MOD IntContent
+   47 oExp: oExp OR Number Compare Number .
+
+    PLUS  shift, and go to state 75
+    SUB   shift, and go to state 76
+    MUL   shift, and go to state 77
+    DIV   shift, and go to state 78
+    MOD   shift, and go to state 79
+
+    $default  reduce using rule 47 (oExp)
+
+
+state 127
+
+   54 oExp: OpenB nExp . CloseB OR oExp
+   55     | OpenB nExp . CloseB
+
+    CloseB  shift, and go to state 128
+
+
+state 128
+
+   54 oExp: OpenB nExp CloseB . OR oExp
+   55     | OpenB nExp CloseB .
+
+    OR  shift, and go to state 112
+
+    OR        [reduce using rule 55 (oExp)]
+    $default  reduce using rule 55 (oExp)
