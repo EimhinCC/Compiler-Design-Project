@@ -1,0 +1,28 @@
+## Valid: No
+
+// Description:Line 16 undeclared vaiable
+void play () {
+    int l;
+    for(l=0; l<10; l=l+1;) {
+        for(l=0; l<10; l=l+1;) {
+            printf("hi");
+        }
+    }
+    return;
+}
+
+void main (int a, int b) {
+    y=3;
+    string c;
+    c="hi";
+    if (a < b) then {
+        return;
+    }
+    else {
+        int i;
+        i = 10;
+    }
+    printf("adwad");
+    return;
+}
+

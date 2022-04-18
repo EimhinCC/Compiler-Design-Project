@@ -1,9 +1,40 @@
-void main () {
+## Valid: Yes
+
+## Description: Valid return types with struct access.
+
+struct Test {
+    string str,
+    int num,
+    bool bln
+}
+
+Test GetTest() {
+    Test t;
+    return t;
+}
+
+int GetNum() {
+    Test t;
+    return t.num;
+}
+
+bool isEqual(int a, int b) {
+    Test t;
+    return a == b and t.bln;
+}
+
+string GetString() {
+    Test t;
     int i;
-    for(i=0; i<10; i=i+1;) {
-        for(i=0; i<10; i=i+1;) {
-            printf("hi");
-        }
-    }
+    return t.str;
+}
+
+void main() {
     return;
+}
+
+bool test(bool x, bool y)
+{
+    if(x) then if(y) then return true;
+    else return false;
 }

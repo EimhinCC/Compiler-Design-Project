@@ -1,0 +1,29 @@
+## Valid: Yes
+
+// Description: Both comment styles, nested loops, printf, if then else
+
+void play () {
+    int l;
+    for(l=0; l<10; l=l+1;) {
+        for(l=0; l<10; l=l+1;) {
+            printf("hi");
+        }
+    }
+    return;
+}
+
+void main (int a, int b) {
+    a=3;
+    string c;
+    c="hi";
+    if (a < b) then {
+        return;
+    }
+    else {
+        int i;
+        i = 10;
+    }
+    printf("adwad");
+    return;
+}
+

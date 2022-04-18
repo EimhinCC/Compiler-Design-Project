@@ -1,0 +1,14 @@
+## Valid: Yes
+
+## Description: Booleans
+
+void main () {
+    bool f;
+    f = true;
+    bool y;
+    y = false;
+    if(f or true ) then {
+        printf("true");
+    }
+    return;
+}

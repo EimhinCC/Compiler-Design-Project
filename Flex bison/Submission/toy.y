@@ -173,7 +173,6 @@ oExp OR BoolContent {$$ = 1;}
 |   Word Compare Number {isDeclared($1, ints, i);$$ = true}
 |   OpenB nExp CloseB OR oExp {$$ = $2|$5;}
 |   OpenB nExp CloseB {$$ = $2;}
-|   Word {isDeclared($1, bools, k);$$ = true}
 ;
 
 

@@ -1,0 +1,9 @@
+## Valid: Yes
+
+## Description: Valid struct creation
+
+struct i {
+    int j;
+    string l;
+    bool k;
+}

@@ -1,0 +1,8 @@
+## Valid: No
+
+// Description:Invalid String
+void main () {
+    printf("adw"ad");
+    return;
+}
+

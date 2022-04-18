@@ -1,0 +1,15 @@
+## Valid: Yes
+
+## Description: Complex if statements
+
+void main () {
+    int i;
+    i=10;
+    int j;
+    j = 6;
+    
+    if(i < j or i > 9) then {
+        return;
+    }
+    j = i mod 4;
+}

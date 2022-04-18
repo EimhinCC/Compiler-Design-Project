@@ -1,0 +1,13 @@
+## Valid: No
+
+// Description:Invalid String
+void main () {
+   int a;
+   int b;
+   a = 1;
+   b = a + 4;
+   a = 3 * 6;
+   int c;
+    c = 20 /2;
+}
+
